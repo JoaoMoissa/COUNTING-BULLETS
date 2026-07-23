@@ -21,12 +21,16 @@ const FOV_CHANGE = 1.5
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
-@onready var health: Label = $Health
 @onready var health_component: Node = $HealthComponent
+@onready var healthbar = $Healthbar
+
+func _on_health_changed(new_health):
+	healthbar.health = new_health
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+	health_component.health_changed.connect(_on_health_changed)
+	healthbar.init_health(health_component.health)
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -80,9 +84,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	
-func _process(delta: float) -> void:
-	health.text = str(health_component.health)
 		
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
