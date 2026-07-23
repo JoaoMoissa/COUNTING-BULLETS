@@ -25,7 +25,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3gngh")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=84208414]
 
 [node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("2_pqhw6")]
-MaxHealth = 100.0
 
 [node name="AttackCooldown" type="Timer" parent="." unique_id=1847164320]
 one_shot = true

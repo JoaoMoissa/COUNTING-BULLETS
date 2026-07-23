@@ -1,8 +1,13 @@
 extends ProgressBar
 
+#nodes
 @onready var timer: Timer = $Timer
 @onready var damage_bar: ProgressBar = $DamageBar
 
+#animation
+var damage_tween: Tween
+
+#health
 var health = 0 : set = _set_health
 
 func _set_health(new_health):
@@ -27,4 +32,10 @@ func init_health(_health):
 	damage_bar.value = health
 
 func _on_timer_timeout() -> void:
-	damage_bar.value = health
+	if damage_tween:
+		damage_tween.kill()
+		
+	damage_tween = create_tween()
+	damage_tween.set_trans(Tween.TRANS_SINE)
+	damage_tween.set_ease(Tween.EASE_OUT)
+	damage_tween.tween_property(damage_bar, "value", health, 0.25)
