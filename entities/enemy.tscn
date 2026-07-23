@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dr1yh64pogsvx"]
+
+[ext_resource type="Script" uid="uid://d06e7pherwok3" path="res://scripts/enemy.gd" id="1_7qchm"]
+[ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="2_pqhw6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57qmd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d0u6y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gngh"]
+albedo_color = Color(0.6627451, 0, 0, 1)
+
+[node name="Enemy" type="CharacterBody3D" unique_id=989046255]
+script = ExtResource("1_7qchm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2127880748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_57qmd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=150422884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_d0u6y")
+surface_material_override/0 = SubResource("StandardMaterial3D_3gngh")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=84208414]
+
+[node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("2_pqhw6")]
+MaxHealth = 100.0
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=1847164320]
+one_shot = true
