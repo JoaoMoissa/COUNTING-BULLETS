@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var can_sprint = true
+var can_take_damage: bool = true
 var speed
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
@@ -18,7 +18,8 @@ const FOV_CHANGE = 1.5
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
-
+@onready var health: Label = $Health
+@onready var health_component: Node = $HealthComponent
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -63,9 +64,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 		
-		
-		
-		
+
+
 	# Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = _headbob(t_bob)
@@ -76,9 +76,17 @@ func _physics_process(delta: float) -> void:
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
 	move_and_slide()
-
+	
+	
+func _process(delta: float) -> void:
+	health.text = str(health_component.health)
+		
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+	
+
+func on_death() -> void:
+	get_tree().quit()

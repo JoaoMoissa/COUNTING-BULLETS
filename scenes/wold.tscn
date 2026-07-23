@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://g5vkkvy668f1" path="res://scripts/Player.gd" id="1_vch2v"]
 [ext_resource type="Texture2D" uid="uid://nfs2ljlcqh82" path="res://assets/images/2462974781166430.jpeg" id="1_ywjxi"]
+[ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="3_baeb5"]
+[ext_resource type="PackedScene" uid="uid://dr1yh64pogsvx" path="res://entities/enemy.tscn" id="3_jcsdj"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_baeb5"]
+vertices = PackedVector3Array(7.5, 0.28502798, -10.25, 9.75, 0.28502798, -10.5, 9.75, 0.28502798, -37.5, -48.5, 0.28502798, -1.25, 7.5, 0.28502798, -1.25, -48.5, 0.28502798, -37.5, 11, 0.28502798, -10.5, 11, 0.28502798, -37.5, 13, 0.28502798, -10.5, 13.25, 0.28502798, -8.75, 48.5, 0.28502798, -9, 48.5, 0.28502798, -37.5, 8.5, 1.285028, -9.5, 8.5, 1.285028, 0, 12.25, 1.285028, 0, 12.25, 1.285028, -9.5, 12.75, 0.28502798, 1, 14.75, 0.28502798, 6.75, 15, 0.28502798, 6.25, 13.25, 0.28502798, 0.75, 17.25, 0.28502798, 6.25, 35, 0.28502798, 10.5, 48.5, 0.28502798, 11.75, 17.5, 0.28502798, 8.5, 26.5, 0.28502798, 10.5, 35.25, 0.28502798, 11.75, 14.75, 0.28502798, 8.75, 7.75, 0.28502798, 1, 15.25, 0.28502798, 37.5, 15.25, 0.28502798, 9, -48.5, 0.28502798, 37.5, 15.75, 1.785028, 7.25, 15.75, 1.785028, 8, 16.5, 1.785028, 8, 16.5, 1.785028, 7.25, 26, 0.28502798, 10.75, 17.25, 0.28502798, 9, 26, 0.28502798, 12.75, 25.75, 0.28502798, 37.5, 27, 5.785028, 11.5, 27, 5.785028, 12.25, 34.25, 5.785028, 12.25, 34.25, 5.785028, 11.5, 35, 0.28502798, 13.25, 26.25, 0.28502798, 13.25, 48.5, 0.28502798, 37.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(2, 0, 5), PackedInt32Array(5, 0, 3), PackedInt32Array(2, 7, 1), PackedInt32Array(1, 7, 6), PackedInt32Array(8, 6, 7), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 11), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(18, 17, 16), PackedInt32Array(16, 19, 18), PackedInt32Array(18, 19, 20), PackedInt32Array(19, 9, 20), PackedInt32Array(20, 9, 21), PackedInt32Array(21, 9, 22), PackedInt32Array(22, 9, 10), PackedInt32Array(23, 20, 24), PackedInt32Array(24, 20, 21), PackedInt32Array(21, 22, 25), PackedInt32Array(17, 26, 16), PackedInt32Array(16, 26, 27), PackedInt32Array(3, 4, 27), PackedInt32Array(26, 29, 28), PackedInt32Array(26, 28, 27), PackedInt32Array(27, 28, 30), PackedInt32Array(27, 30, 3), PackedInt32Array(34, 33, 31), PackedInt32Array(31, 33, 32), PackedInt32Array(36, 23, 35), PackedInt32Array(35, 23, 24), PackedInt32Array(35, 37, 36), PackedInt32Array(36, 37, 29), PackedInt32Array(29, 37, 38), PackedInt32Array(29, 38, 28), PackedInt32Array(42, 41, 39), PackedInt32Array(39, 41, 40), PackedInt32Array(43, 25, 22), PackedInt32Array(38, 37, 44), PackedInt32Array(43, 38, 44), PackedInt32Array(22, 45, 43), PackedInt32Array(43, 45, 38)]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vch2v"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -24,21 +30,39 @@ uv1_triplanar = true
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ywjxi"]
 points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4760704, 0.49888408, 0.16971254, 0.5591441, 0.46417162, 0.23105091, -0.8035912, 0.32045516, 0.40741014, 0.651043, -0.24352328, -0.4827893, 0.59484255, 0.082213186, -0.3628679, -0.68231165, 0.2896967, 0.46904355, -0.65452886, -0.06627126, -0.12744367, 0.8427015, -0.33810276, -0.39343542, -0.6839421, -0.24471663, 0.43825462, 0.62330925, 0.20084947, 0.0841477, 0.977454, 0.11479468, -0.06820232, -0.9764576, -0.12927033, 0.20054972, -0.56312895, -0.4514544, -0.18552664, 0.59545326, -0.4534751, -0.27336287, 0.59226835, 0.40775412, -0.0069364863, -0.47682306, 0.49966025, 0.37582088, -0.5886136, 0.31695515, 0.111579016, 0.5630594, -0.48117727, -0.41725034, 0.5278656, -0.27049688, -0.48454633, -0.59697217, -0.06650971, -0.27974695, 0.90856135, 0.05333608, -0.25019687, -0.8807117, 0.20531891, 0.263647, -0.90277094, -0.1273943, 0.29336792, 0.8715263, -0.15719566, 0.3734115, -0.5263189, -0.32824618, 0.4996626, 0.47664148, -0.0068885577, 0.053105574, 0.8750009, 0.32470253, -0.15454252, -0.5908538, 0.4658794, -0.09727988, -0.7823577, -0.39818847, -0.3876489, -0.49817133, 0.31564978, -0.30067965, -0.58799505, -0.38890144)
 
-[node name="Wold" type="Node3D" unique_id=1391810359]
+[node name="Main" type="Node3D" unique_id=1391810359]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=836681413]
+[node name="Wold" type="NavigationRegion3D" parent="." unique_id=1398679537]
+navigation_mesh = SubResource("NavigationMesh_baeb5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Wold" unique_id=836681413]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=815160407]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Wold" unique_id=815160407]
 environment = SubResource("Environment_jcsdj")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1675117060]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wold" unique_id=964126300]
 use_collision = true
-size = Vector3(98, 0.001, 76)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Wold/CSGCombiner3D" unique_id=1675117060]
+use_collision = true
+size = Vector3(98, 0, 76)
 material = SubResource("StandardMaterial3D_3vyb7")
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=369835043]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Wold/CSGCombiner3D" unique_id=1725048547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.389648, 0.18932486, -4.8090587)
+size = Vector3(4.538086, 1.3085938, 10.328125)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Wold/CSGCombiner3D" unique_id=1816745668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.147951, 0.66484714, 7.7436867)
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Wold/CSGCombiner3D" unique_id=1350074700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.54554, 2.782878, 11.751589)
+size = Vector3(8.029785, 5.230591, 1.5)
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=369835043 groups=["Player"]]
 script = ExtResource("1_vch2v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1512150841]
@@ -53,3 +77,14 @@ shape = SubResource("ConvexPolygonShape3D_ywjxi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7482731, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=1721717442]
+current = true
+
+[node name="HealthComponent" parent="Player" unique_id=1607970574 instance=ExtResource("3_baeb5")]
+MaxHealth = 100.0
+
+[node name="Health" type="Label" parent="Player" unique_id=1511769982]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Enemy" parent="." unique_id=989046255 instance=ExtResource("3_jcsdj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.528023, 0, 5.071156)
