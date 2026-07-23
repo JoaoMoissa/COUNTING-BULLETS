@@ -1,8 +1,6 @@
 extends CharacterBody3D
 
 
-
-
 var can_take_damage: bool = true
 var speed
 const WALK_SPEED = 5.0
@@ -19,10 +17,15 @@ var t_bob = 0.0
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
 
+#bullets variables
+const bullet = preload("res://scenes/bullet.tscn")
+
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var health_component: Node = $HealthComponent
 @onready var healthbar = $Healthbar
+@onready var gun_barrel = $Head/Camera3D/Revolver/RayCast3D
+
 
 func _on_health_changed(new_health):
 	healthbar.health = new_health
@@ -37,6 +40,18 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+
+
+#shoot
+func _handle_shoot():
+	
+	if Input.is_action_just_pressed("shoot"):
+		var instance = bullet.instantiate()
+		instance.position = gun_barrel.global_position
+		instance.transform.basis = gun_barrel.global_transform.basis
+		get_parent().add_child(instance)
+			
+
 		
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -82,9 +97,12 @@ func _physics_process(delta: float) -> void:
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
+	
+	_handle_shoot()
+			
 	move_and_slide()
 	
-		
+
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP

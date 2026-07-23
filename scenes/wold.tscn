@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="3_baeb5"]
 [ext_resource type="PackedScene" uid="uid://dr1yh64pogsvx" path="res://entities/enemy.tscn" id="3_jcsdj"]
 [ext_resource type="PackedScene" uid="uid://msu1tfpfy18u" path="res://scenes/healthbar.tscn" id="4_e62vq"]
+[ext_resource type="PackedScene" uid="uid://clyyf2s1ycx38" path="res://scenes/revolver.tscn" id="5_u4o2j"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_baeb5"]
 vertices = PackedVector3Array(7.5, 0.28502798, -10.25, 9.75, 0.28502798, -10.5, 9.75, 0.28502798, -37.5, -48.5, 0.28502798, -1.25, 7.5, 0.28502798, -1.25, -48.5, 0.28502798, -37.5, 11, 0.28502798, -10.5, 11, 0.28502798, -37.5, 13, 0.28502798, -10.5, 13.25, 0.28502798, -8.75, 48.5, 0.28502798, -9, 48.5, 0.28502798, -37.5, 8.5, 1.285028, -9.5, 8.5, 1.285028, 0, 12.25, 1.285028, 0, 12.25, 1.285028, -9.5, 12.75, 0.28502798, 1, 14.75, 0.28502798, 6.75, 15, 0.28502798, 6.25, 13.25, 0.28502798, 0.75, 17.25, 0.28502798, 6.25, 35, 0.28502798, 10.5, 48.5, 0.28502798, 11.75, 17.5, 0.28502798, 8.5, 26.5, 0.28502798, 10.5, 35.25, 0.28502798, 11.75, 14.75, 0.28502798, 8.75, 7.75, 0.28502798, 1, 15.25, 0.28502798, 37.5, 15.25, 0.28502798, 9, -48.5, 0.28502798, 37.5, 15.75, 1.785028, 7.25, 15.75, 1.785028, 8, 16.5, 1.785028, 8, 16.5, 1.785028, 7.25, 26, 0.28502798, 10.75, 17.25, 0.28502798, 9, 26, 0.28502798, 12.75, 25.75, 0.28502798, 37.5, 27, 5.785028, 11.5, 27, 5.785028, 12.25, 34.25, 5.785028, 12.25, 34.25, 5.785028, 11.5, 35, 0.28502798, 13.25, 26.25, 0.28502798, 13.25, 48.5, 0.28502798, 37.5)
@@ -79,6 +80,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7482731, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=1721717442]
 current = true
+
+[node name="Revolver" parent="Player/Head/Camera3D" unique_id=187879373 instance=ExtResource("5_u4o2j")]
+transform = Transform3D(0.9876283, -0.04877264, 0.14903563, 0.064133994, 0.99291193, -0.10006751, -0.14309868, 0.10838776, 0.98375565, 0.5093621, -0.34570944, -0.67105675)
 
 [node name="HealthComponent" parent="Player" unique_id=1607970574 instance=ExtResource("3_baeb5")]
 
