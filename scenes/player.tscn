@@ -33,3 +33,9 @@ transform = Transform3D(0.9876283, -0.04877264, 0.14903563, 0.064133994, 0.99291
 [node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("3_tuyoq")]
 
 [node name="Healthbar" parent="." unique_id=771241607 instance=ExtResource("4_fjrip")]
+
+[node name="ReloadCooldown" type="Timer" parent="." unique_id=1700767137]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]
