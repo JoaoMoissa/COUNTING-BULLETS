@@ -1,8 +1,8 @@
 extends Node
 class_name Attack
 
-var damage: float = 25.0
-var attacker: Node3D = null
+var damage: float
+var attacker: Node = null
 
 func _init(damage: float, attacker: Node3D) -> void:
 	self.damage = damage

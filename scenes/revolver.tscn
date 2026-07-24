@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://clyyf2s1ycx38"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(0.49121094, 0.12011719, 0.13574219)
+
+[node name="Revolver" type="Node3D" unique_id=187879373]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1346209894]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=59567347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.24103788)
+target_position = Vector3(0, 0, -1)

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var MoveSpeed: float = 4.0
 @export var AttackReach: float = 1.5
-@export var AttackDamage: float = 1.0
+@export var AttackDamage: float = 10.0
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var attack_cooldown: Timer = $AttackCooldown
 
@@ -13,11 +13,11 @@ func _ready() -> void:
 		
 	
 #movement of the enemy
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	navigation_agent.set_target_position(player.global_position)
 	
 		
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	if global_position.distance_to(player.global_position) < AttackReach:
 		if attack_cooldown.is_stopped():
