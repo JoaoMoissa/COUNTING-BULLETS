@@ -1,44 +1,123 @@
 [gd_scene format=3 uid="uid://crbr7vc85egsu"]
 
 [ext_resource type="Script" uid="uid://dybnyyimwkwbf" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://dke0or1fa4eec" path="res://png/MainMenu/Background.png" id="2_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://c833bimgcy70e" path="res://png/MainMenu/COUNTING bullets.png" id="3_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://d0i3fqwyq06tk" path="res://png/MainMenu/StartGame.png" id="4_flqon"]
+[ext_resource type="Texture2D" uid="uid://d2p77m08f6yog" path="res://png/MainMenu/StartGameWhite.png" id="5_rcqid"]
+[ext_resource type="Texture2D" uid="uid://do7aifju6like" path="res://png/MainMenu/Options.png" id="6_1ajci"]
+[ext_resource type="Texture2D" uid="uid://do7j0wuc6ybo2" path="res://png/MainMenu/OptionsWhite.png" id="7_7b55j"]
+[ext_resource type="Texture2D" uid="uid://dknv0aydfu4tb" path="res://png/MainMenu/Quit.png" id="8_5pajh"]
+[ext_resource type="Texture2D" uid="uid://c218clk063vau" path="res://png/MainMenu/QuitWhite.png" id="9_j7ex8"]
+[ext_resource type="Texture2D" uid="uid://dquj6rw4mxhw4" path="res://png/MainMenu/Character.png" id="10_a8gd2"]
 
-[node name="mainMenu" type="Node2D" unique_id=1187204631]
+[node name="mainMenu" type="Control" unique_id=1309199206]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_l6cm7")
 
-[node name="button_manager" type="Control" parent="." unique_id=379757312]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Background" type="TextureRect" parent="." unique_id=1514708163]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_5dd4i")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="start" type="Button" parent="button_manager" unique_id=1695727119]
-layout_mode = 0
-offset_left = 524.0
-offset_top = 163.0
-offset_right = 724.0
-offset_bottom = 252.0
-text = "Start Game"
+[node name="TitleArea" type="MarginContainer" parent="." unique_id=802914137]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 17
 
-[node name="options" type="Button" parent="button_manager" unique_id=1239771280]
-layout_mode = 0
-offset_left = 521.0
-offset_top = 271.0
-offset_right = 719.0
-offset_bottom = 352.0
-text = "Options
+[node name="CenterContainer" type="CenterContainer" parent="TitleArea" unique_id=1640514900]
+layout_mode = 2
 
+[node name="CountingBullets" type="TextureRect" parent="TitleArea/CenterContainer" unique_id=614694717]
+custom_minimum_size = Vector2(1010, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture = ExtResource("3_lgwnu")
+expand_mode = 1
+stretch_mode = 5
 
-"
+[node name="ButtonsArea" type="MarginContainer" parent="." unique_id=151907886]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 316.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_top = 100
 
-[node name="quit" type="Button" parent="button_manager" unique_id=1199687329]
-layout_mode = 0
-offset_left = 525.0
-offset_top = 378.0
-offset_right = 723.0
-offset_bottom = 475.0
-text = "Quit
-"
+[node name="VBoxContainer" type="VBoxContainer" parent="ButtonsArea" unique_id=2093633148]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 20
 
-[connection signal="pressed" from="button_manager/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="button_manager/options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="button_manager/quit" to="." method="_on_quit_pressed"]
+[node name="start" type="TextureButton" parent="ButtonsArea/VBoxContainer" unique_id=1116118433]
+custom_minimum_size = Vector2(500, 80)
+layout_mode = 2
+texture_normal = ExtResource("4_flqon")
+texture_hover = ExtResource("5_rcqid")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="options" type="TextureButton" parent="ButtonsArea/VBoxContainer" unique_id=1438718004]
+custom_minimum_size = Vector2(350, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("6_1ajci")
+texture_hover = ExtResource("7_7b55j")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="quit" type="TextureButton" parent="ButtonsArea/VBoxContainer" unique_id=1317155149]
+custom_minimum_size = Vector2(185, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("8_5pajh")
+texture_hover = ExtResource("9_j7ex8")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Character" type="TextureRect" parent="." unique_id=2137771633]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_right = 769.0
+offset_bottom = 257.0
+grow_vertical = 0
+scale = Vector2(0.61, 0.61)
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.18)
+texture = ExtResource("10_a8gd2")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="ButtonsArea/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="ButtonsArea/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ButtonsArea/VBoxContainer/quit" to="." method="_on_quit_pressed"]

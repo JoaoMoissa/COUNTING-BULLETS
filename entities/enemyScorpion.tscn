@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://b7wor6ol7sks"]
+
+[ext_resource type="Script" uid="uid://d06e7pherwok3" path="res://scripts/enemy.gd" id="1_k4cmq"]
+[ext_resource type="Texture2D" uid="uid://mjrt0x814fs6" path="res://png/AGARAGÃ PEQUENO.png" id="2_w0vlv"]
+[ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="3_qucod"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57qmd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d0u6y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gngh"]
+albedo_color = Color(0.6627451, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvc0s"]
+atlas = ExtResource("2_w0vlv")
+region = Rect2(0, 0, 592, 769)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvc0s")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_57qmd"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf5fn"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_57qmd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d0u6y"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3gngh"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=989046255]
+script = ExtResource("1_k4cmq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2127880748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_57qmd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=150422884]
+mesh = SubResource("CapsuleMesh_d0u6y")
+surface_material_override/0 = SubResource("StandardMaterial3D_3gngh")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1573465080]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+animation = &"idle"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=84208414]
+
+[node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("3_qucod")]
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=1847164320]
+one_shot = true
+
+[node name="VisualRoot" type="Node3D" parent="." unique_id=102721020]
+
+[node name="head" type="Area3D" parent="VisualRoot" unique_id=265437461 groups=["Head", "Hitbox"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.07395923, 1.687, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisualRoot/head" unique_id=1423984715]
+shape = SubResource("SphereShape3D_57qmd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualRoot/head/CollisionShape3D" unique_id=312724020]
+visible = false
+mesh = SubResource("SphereMesh_g4v7s")
+
+[node name="body" type="Area3D" parent="VisualRoot" unique_id=561461873 groups=["Body", "Hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07395923, 0, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisualRoot/body" unique_id=2132784711]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualRoot/body/CollisionShape3D" unique_id=888825318]
+visible = false
+mesh = SubResource("CapsuleMesh_g4v7s")
+
+[node name="right_arm" type="Area3D" parent="VisualRoot" unique_id=1765463125 groups=["Hitbox", "RightArm"]]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.48046386, 1.1017016, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisualRoot/right_arm" unique_id=696432634]
+shape = SubResource("CapsuleShape3D_yf5fn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualRoot/right_arm/CollisionShape3D" unique_id=1932827200]
+transform = Transform3D(0.99999976, 0, 0, 0, 1.4, 0, 0, 0, 0.99999976, 0, 0, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_57qmd")
+
+[node name="right_leg" type="Area3D" parent="VisualRoot" unique_id=346560865 groups=["Hitbox", "RightLeg"]]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.32290184, 0.3157258, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisualRoot/right_leg" unique_id=1838825848]
+shape = SubResource("CapsuleShape3D_yf5fn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualRoot/right_leg/CollisionShape3D" unique_id=409703455]
+transform = Transform3D(0.99999976, 0, 0, 0, 1.3, 0, 0, 0, 0.99999976, 0, 0, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_57qmd")
+
+[node name="left_leg" type="Area3D" parent="VisualRoot" unique_id=1287655393 groups=["Hitbox", "LeftLeg"]]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.14806998, 0.28148508, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisualRoot/left_leg" unique_id=2096215905]
+shape = SubResource("CapsuleShape3D_yf5fn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualRoot/left_leg/CollisionShape3D" unique_id=108577559]
+transform = Transform3D(0.99999994, 0, 0, 0, 1.1999999, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_57qmd")
+
+[node name="left_arm" type="Area3D" parent="VisualRoot" unique_id=1652605474 groups=["Hitbox", "LeftArm"]]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.36488497, 1.0829028, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisualRoot/left_arm" unique_id=2017242095]
+shape = SubResource("SphereShape3D_d0u6y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualRoot/left_arm/CollisionShape3D" unique_id=893801000]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -0.0032520294, 0)
+visible = false
+mesh = SubResource("SphereMesh_3gngh")
