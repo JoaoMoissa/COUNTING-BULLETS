@@ -20,6 +20,10 @@ const FOV_CHANGE = 1.5
 #bullets variables
 const bullet = preload("res://scenes/bullet.tscn")
 
+# Ammo variables
+const MAG_SIZE = 6
+var ammo_in_mag = MAG_SIZE
+
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var health_component: Node = $HealthComponent
@@ -45,7 +49,8 @@ func _unhandled_input(event):
 #shoot
 func _handle_shoot():
 	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and ammo_in_mag > 0:
+		ammo_in_mag -= 1
 		var instance = bullet.instantiate()
 		instance.position = gun_barrel.global_position
 		instance.transform.basis = gun_barrel.global_transform.basis
