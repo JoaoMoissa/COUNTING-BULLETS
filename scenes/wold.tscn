@@ -39,7 +39,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Wold" unique_id=815160407]
 environment = SubResource("Environment_jcsdj")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wold" unique_id=964126300]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wold" unique_id=964126300 groups=["World"]]
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Wold/CSGCombiner3D" unique_id=1675117060]
@@ -63,6 +63,9 @@ size = Vector3(8.029785, 5.230591, 1.5)
 
 [node name="Enemy" parent="." unique_id=989046255 instance=ExtResource("3_jcsdj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.528023, 0, 5.071156)
+
+[node name="Enemy2" parent="." unique_id=1847155314 instance=ExtResource("3_jcsdj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.528023, 0, 21.792171)
 
 [node name="ball_cactus" parent="." unique_id=283268280 instance=ExtResource("7_c0o0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5806465, -9.536743e-07, -8.213774)

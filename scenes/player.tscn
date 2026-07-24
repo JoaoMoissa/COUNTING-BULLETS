@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://g5vkkvy668f1" path="res://scripts/Player.gd" id="1_dqkch"]
 [ext_resource type="PackedScene" uid="uid://clyyf2s1ycx38" path="res://scenes/revolver.tscn" id="2_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://dv8m1dascp3n3" path="res://png/ARMA FINALIZADA.png" id="3_fjrip"]
 [ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="3_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://msu1tfpfy18u" path="res://scenes/healthbar.tscn" id="4_fjrip"]
+[ext_resource type="Script" uid="uid://dwmwjk6yywav0" path="res://scenes/reticle.gd" id="6_tuyoq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 
@@ -28,7 +30,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7482731, 0)
 current = true
 
 [node name="Revolver" parent="Head/Camera3D" unique_id=187879373 instance=ExtResource("2_qlg0r")]
-transform = Transform3D(0.9876283, -0.04877264, 0.14903563, 0.064133994, 0.99291193, -0.10006751, -0.14309868, 0.10838776, 0.98375565, 0.5093621, -0.34570944, -0.67105675)
+transform = Transform3D(0.9876283, -0.04877264, 0.14903563, 0.064133994, 0.99291193, -0.10006751, -0.14309868, 0.10838776, 0.98375565, 0.35488814, -0.08040559, -0.7499223)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Head/Camera3D" unique_id=1001775197]
+
+[node name="Weapon" type="Sprite2D" parent="Head/Camera3D/CanvasLayer" unique_id=1948241857]
+position = Vector2(914, 490)
+scale = Vector2(0.48458195, 0.484582)
+texture = ExtResource("3_fjrip")
+
+[node name="AmmoLabel" type="Label" parent="Head/Camera3D/CanvasLayer" unique_id=1540089345]
+offset_left = 5.0
+offset_top = 28.0
+offset_right = 45.0
+offset_bottom = 60.0
+
+[node name="ReloadLabel" type="Label" parent="Head/Camera3D/CanvasLayer" unique_id=646057251]
+offset_left = 50.0
+offset_top = 27.0
+offset_right = 90.0
+offset_bottom = 56.0
 
 [node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("3_tuyoq")]
 
@@ -37,5 +58,29 @@ transform = Transform3D(0.9876283, -0.04877264, 0.14903563, 0.064133994, 0.99291
 [node name="ReloadCooldown" type="Timer" parent="." unique_id=1700767137]
 wait_time = 5.0
 one_shot = true
+
+[node name="Control" type="Control" parent="." unique_id=1351191339]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=805680954]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_tuyoq")
 
 [connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]
