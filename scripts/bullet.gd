@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	if lifetime <= 0.0:
 		queue_free()
 
-
+# When enter the area
 func _on_area_entered(area: Area3D) -> void:
 	if has_hit:
 		return
@@ -54,12 +54,13 @@ func _on_area_entered(area: Area3D) -> void:
 	var health_component = enemy.get_node("HealthComponent")
 	
 	var final_damage: float = damage
+	var is_headshot: bool = area.is_in_group("Head")
 	
-	if area.is_in_group("Head"):
+	if is_headshot:
 		final_damage *= headshot_multiplier
 		print("HEADSHOT!")
-		
-	var attack = Attack.new(final_damage, self)
+	
+	var attack = Attack.new(final_damage, self, is_headshot)
 	health_component.damage(attack)
 	
 	queue_free()

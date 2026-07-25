@@ -66,9 +66,15 @@ size = Vector3(8.029785, 5.230591, 1.5)
 
 [node name="Enemy" parent="." unique_id=989046255 instance=ExtResource("3_jcsdj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.528023, 0, 5.071156)
+MoveSpeed = null
+AttackReach = null
+AttackDamage = null
 
 [node name="Enemy2" parent="." unique_id=1847155314 instance=ExtResource("3_jcsdj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.528023, 0, 21.792171)
+MoveSpeed = null
+AttackReach = null
+AttackDamage = null
 
 [node name="ball_cactus" parent="." unique_id=283268280 instance=ExtResource("7_c0o0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5806465, -9.536743e-07, -8.213774)
@@ -76,4 +82,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5806465, -9.536743e-07, -
 [node name="EnemyCoyote" parent="." unique_id=512041405 instance=ExtResource("5_e62vq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.12267, 0.06460655, -21.060123)
 script = ExtResource("6_u4o2j")
-StopDistance = 8.0
+ShootDistance = 8.0
+ShootDelay = 1.5
