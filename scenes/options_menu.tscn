@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://csvu37vq0y5fl"]
+
+[ext_resource type="Script" uid="uid://b0su8f4shxyce" path="res://scripts/options_menu.gd" id="1_liyum"]
+
+[node name="OptionsMenu" type="Control" unique_id=1166744163]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_liyum")
+
+[node name="SensitivityLabel" type="Label" parent="." unique_id=319444945]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SensitivitySlider" type="HSlider" parent="." unique_id=75142472]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="SensitivityValue" type="Label" parent="." unique_id=1344792586]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
