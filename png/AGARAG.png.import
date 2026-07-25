@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mjrt0x814fs6"
-path.s3tc="res://.godot/imported/AGARAGÃ PEQUENO.png-7cf8b3e120fa00884b351ea2998e7e11.s3tc.ctex"
+uid="uid://clm8wa1srbs2s"
+path.s3tc="res://.godot/imported/AGARAG.png-09216ff7afc2828a50c537ac1dd8a32d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://png/AGARAGÃ PEQUENO.png"
-dest_files=["res://.godot/imported/AGARAGÃ PEQUENO.png-7cf8b3e120fa00884b351ea2998e7e11.s3tc.ctex"]
+source_file="res://png/AGARAG.png"
+dest_files=["res://.godot/imported/AGARAG.png-09216ff7afc2828a50c537ac1dd8a32d.s3tc.ctex"]
 
 [params]
 

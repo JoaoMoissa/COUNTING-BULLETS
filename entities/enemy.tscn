@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dr1yh64pogsvx"]
 
 [ext_resource type="Script" uid="uid://d06e7pherwok3" path="res://scripts/enemy.gd" id="1_7qchm"]
+[ext_resource type="Texture2D" uid="uid://clm8wa1srbs2s" path="res://png/AGARAG.png" id="2_b4nis"]
 [ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="2_pqhw6"]
-[ext_resource type="Texture2D" uid="uid://mjrt0x814fs6" path="res://png/AGARAGÃ PEQUENO.png" id="3_b4nis"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57qmd"]
 
@@ -12,17 +12,17 @@
 albedo_color = Color(0.6627451, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uvc0s"]
-atlas = ExtResource("3_b4nis")
-region = Rect2(0, 0, 592, 769)
+atlas = ExtResource("2_b4nis")
+region = Rect2(0, 0, 572, 751)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uvc0s")
 }],
 "loop": 1,
-"name": &"idle",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -54,13 +54,12 @@ shape = SubResource("CapsuleShape3D_57qmd")
 mesh = SubResource("CapsuleMesh_d0u6y")
 surface_material_override/0 = SubResource("StandardMaterial3D_3gngh")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1573465080]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1, 0)
-billboard = 2
-sprite_frames = SubResource("SpriteFrames_yf5fn")
-animation = &"idle"
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=84208414]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=398145310]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.0618896, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_g4v7s")
 
 [node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("2_pqhw6")]
 
@@ -68,6 +67,7 @@ animation = &"idle"
 one_shot = true
 
 [node name="VisualRoot" type="Node3D" parent="." unique_id=102721020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019958496, 0.06188965, 0)
 
 [node name="head" type="Area3D" parent="VisualRoot" unique_id=265437461 groups=["Head", "Hitbox"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.07395923, 1.687, 0)

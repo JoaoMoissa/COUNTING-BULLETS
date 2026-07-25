@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="COUNTING_BULLETS"
+run/main_scene="uid://crbr7vc85egsu"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -30,6 +31,7 @@ RightLeg=""
 LeftLeg=""
 LeftArm=""
 World=""
+PlayerHitbox=""
 
 [input]
 
@@ -80,6 +82,7 @@ reload={
 3d_physics/layer_1="World"
 3d_physics/layer_2="HitBox"
 3d_physics/layer_3="Projectile"
+3d_physics/layer_4="PlayerHibox"
 
 [physics]
 
