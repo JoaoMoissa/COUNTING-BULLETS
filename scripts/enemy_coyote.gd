@@ -4,6 +4,9 @@ const bullet = preload("res://scenes/enemy_bullet.tscn")
 
 @export var ShootDistance: float = 8.0
 @export var ShootDelay: float = 1.5
+@export var Points: int = 150
+@export var HeadshotBonus: float = 1.5
+
 @onready var shoot_cooldown: Timer = $ShootCooldown
 @onready var gun_barrel: Node3D = $VisualRoot/GunBarrel
 
@@ -13,6 +16,8 @@ const bullet = preload("res://scenes/enemy_bullet.tscn")
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var visual_root: Node3D = $VisualRoot
+
+
 
 var player: CharacterBody3D = null
 var preparing_to_shoot: bool = false
@@ -80,5 +85,9 @@ func process_move() -> void:
 
 	move_and_slide()
 
-func on_death() -> void:
+func on_death(attack: Attack = null) -> void:
+	var points: int = Points
+	if attack != null and attack.is_headshot:
+		points = int(points * HeadshotBonus)
+	ScoreManager.add_kill(points)
 	queue_free()
