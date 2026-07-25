@@ -9,6 +9,7 @@ func _ready():
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	quit_popup.hide()
 	options_menu.hide()
+	hide()
 
 func resume():
 	quit_popup.hide()
