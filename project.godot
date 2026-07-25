@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 ScoreManager="*uid://bbpps6xr60yf6"
+Settings="*uid://dxmhg17sh5wwg"
 
 [display]
 

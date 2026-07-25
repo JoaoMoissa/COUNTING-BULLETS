@@ -1,15 +1,18 @@
 extends Control
 
 @onready var quit_popup: Control = $QuitPopUp
+@onready var options_menu: Control = $OptionsMenu
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	$AnimationPlayer.play("RESET")
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	quit_popup.hide()
+	options_menu.hide()
 
 func resume():
 	quit_popup.hide()
+	options_menu.hide()
 	hide()
 	
 	var focused_control := get_viewport().gui_get_focus_owner()
@@ -34,6 +37,8 @@ func testEsc():
 
 	if quit_popup.visible:
 		quit_popup.hide()
+	elif options_menu.visible:
+		options_menu.hide()
 	elif get_tree().paused:
 		resume()
 	else:
@@ -62,4 +67,4 @@ func _on_no_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
-	pass # Replace with function body.
+	options_menu.open_menu()

@@ -1,12 +1,10 @@
 extends CharacterBody3D
 
-
 var can_take_damage: bool = true
 var speed
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
-const SENSITIVITY = 0.003
 
 #bob variables
 const BOB_FREQ = 2.0
@@ -56,13 +54,14 @@ func _ready():
 	_update_ammo_ui()
 	
 	# Update score
+	ScoreManager.reset()
 	ScoreManager.score_changed.connect(_on_score_changed)
 	_on_score_changed(ScoreManager.score)
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
+		head.rotate_y(-event.relative.x * Settings.mouse_sensitivity)
+		camera.rotate_x(-event.relative.y * Settings.mouse_sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 
