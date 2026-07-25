@@ -14,4 +14,4 @@ func damage(attack: Attack) -> void:
 		parent.on_damage(attack)
 		
 	if health <= 0:
-		parent.on_death()
+		parent.on_death(attack)

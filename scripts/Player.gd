@@ -22,7 +22,7 @@ const bullet = preload("res://scenes/bullet.tscn")
 
 # Ammo variables
 const MAG_SIZE = 6
-const RELOAD_TIMER: float = 3.0
+const RELOAD_TIMER: float = 1.5
 var ammo_in_mag = MAG_SIZE
 var reserve_ammo = 0
 var is_reloading = false
@@ -36,10 +36,13 @@ var can_reload = false
 @onready var reload_cooldown = $ReloadCooldown
 @onready var ammo_label: Label = $Head/Camera3D/CanvasLayer/AmmoLabel
 @onready var reload_label: Label = $Head/Camera3D/CanvasLayer/ReloadLabel
-
+@onready var score_label: Label = $Head/Camera3D/CanvasLayer/ScoreLabel #ScoreLabel to show score
 
 func _update_ammo_ui():
-	ammo_label.text = str(ammo_in_mag) + " / " + str(MAG_SIZE)
+	ammo_label.text = str(ammo_in_mag)
+
+func _on_score_changed(new_score):
+	score_label.text = "Score: %d" % new_score
 
 func _on_health_changed(new_health):
 	healthbar.health = new_health
@@ -52,6 +55,9 @@ func _ready():
 	reload_label.visible = false
 	_update_ammo_ui()
 	
+	# Update score
+	ScoreManager.score_changed.connect(_on_score_changed)
+	_on_score_changed(ScoreManager.score)
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -196,7 +202,7 @@ func _headbob(time) -> Vector3:
 	return pos
 	
 
-func on_death() -> void:
+func on_death(_attack: Attack = null) -> void:
 	get_tree().quit()
 
 

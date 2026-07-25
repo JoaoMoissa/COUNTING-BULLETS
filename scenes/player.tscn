@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="3_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://msu1tfpfy18u" path="res://scenes/healthbar.tscn" id="4_fjrip"]
 [ext_resource type="Script" uid="uid://dwmwjk6yywav0" path="res://scenes/reticle.gd" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://b87v4j4n6s0d" path="res://png/Aim 1.png" id="7_fjrip"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 
@@ -55,48 +56,73 @@ scale = Vector2(0.48458195, 0.484582)
 texture = ExtResource("3_fjrip")
 
 [node name="AmmoLabel" type="Label" parent="Head/Camera3D/CanvasLayer" unique_id=1540089345]
-offset_left = 5.0
-offset_top = 28.0
-offset_right = 45.0
-offset_bottom = 60.0
+offset_left = 973.0
+offset_top = 332.0
+offset_right = 1048.0
+offset_bottom = 395.0
+theme_override_font_sizes/font_size = 40
+text = "9"
 
 [node name="ReloadLabel" type="Label" parent="Head/Camera3D/CanvasLayer" unique_id=646057251]
-offset_left = 50.0
-offset_top = 27.0
-offset_right = 90.0
-offset_bottom = 56.0
+offset_left = 991.0
+offset_top = 321.0
+offset_right = 1031.0
+offset_bottom = 350.0
+text = "99.9"
+
+[node name="ScoreLabel" type="Label" parent="Head/Camera3D/CanvasLayer" unique_id=1147912653]
+offset_left = 997.0
+offset_top = 6.0
+offset_right = 1145.0
+offset_bottom = 73.0
+theme_override_font_sizes/font_size = 23
+text = "9999
+"
+horizontal_alignment = 1
 
 [node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("3_tuyoq")]
 
 [node name="Healthbar" parent="." unique_id=771241607 instance=ExtResource("4_fjrip")]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 271.0
+offset_bottom = 27.0
 
 [node name="ReloadCooldown" type="Timer" parent="." unique_id=1700767137]
 wait_time = 5.0
 one_shot = true
 
 [node name="Control" type="Control" parent="." unique_id=1351191339]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=805680954]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -46.0
+offset_top = -25.0
+offset_right = -46.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_tuyoq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=1392146340]
+position = Vector2(576, 324)
+texture = ExtResource("7_fjrip")
 
 [node name="PlayerHead" type="Area3D" parent="." unique_id=1165680688 groups=["Head", "PlayerHitbox"]]
 collision_layer = 8

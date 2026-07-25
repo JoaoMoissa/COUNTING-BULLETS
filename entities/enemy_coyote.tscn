@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgpxb7uacsoo6"]
 
-[ext_resource type="Script" uid="uid://d06e7pherwok3" path="res://scripts/enemy.gd" id="1_ynxh8"]
+[ext_resource type="Script" uid="uid://c1w56iapqdh3d" path="res://scripts/enemy_coyote.gd" id="1_ynxh8"]
 [ext_resource type="Texture2D" uid="uid://clm8wa1srbs2s" path="res://png/AGARAG.png" id="2_6dkc7"]
 [ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="3_cjjl2"]
 

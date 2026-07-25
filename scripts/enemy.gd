@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var Points: int = 100
+@export var HeadshotBonus: float = 1.5
 @export var MoveSpeed: float = 4.0
 @export var AttackReach: float = 1.5
 @export var AttackDamage: float = 10.0
@@ -45,5 +47,9 @@ func process_move() -> void:
 	
 	move_and_slide()
 
-func on_death() -> void:
+func on_death(attack: Attack = null) -> void:
+	var points: int = Points
+	if attack != null and attack.is_headshot:
+		points = int(points * HeadshotBonus)
+	ScoreManager.add_kill(points)
 	queue_free()
