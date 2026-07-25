@@ -59,7 +59,7 @@ func _ready():
 	ScoreManager.score_changed.connect(_on_score_changed)
 	_on_score_changed(ScoreManager.score)
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
@@ -67,7 +67,6 @@ func _unhandled_input(event):
 
 
 #add the reload label
-	
 func _update_reload_ui():
 	if reload_cooldown.is_stopped():
 		reload_label.visible = false
