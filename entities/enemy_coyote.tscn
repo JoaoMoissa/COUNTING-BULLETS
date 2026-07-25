@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://dr1yh64pogsvx"]
+[gd_scene format=3 uid="uid://cgpxb7uacsoo6"]
 
-[ext_resource type="Script" uid="uid://d06e7pherwok3" path="res://scripts/enemy.gd" id="1_7qchm"]
-[ext_resource type="Texture2D" uid="uid://clm8wa1srbs2s" path="res://png/AGARAG.png" id="2_b4nis"]
-[ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="2_pqhw6"]
+[ext_resource type="Script" uid="uid://d06e7pherwok3" path="res://scripts/enemy.gd" id="1_ynxh8"]
+[ext_resource type="Texture2D" uid="uid://clm8wa1srbs2s" path="res://png/AGARAG.png" id="2_6dkc7"]
+[ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="3_cjjl2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57qmd"]
 
@@ -12,7 +12,7 @@
 albedo_color = Color(0.6627451, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uvc0s"]
-atlas = ExtResource("2_b4nis")
+atlas = ExtResource("2_6dkc7")
 region = Rect2(0, 0, 572, 751)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
@@ -42,8 +42,8 @@ animations = [{
 
 [sub_resource type="SphereMesh" id="SphereMesh_3gngh"]
 
-[node name="Enemy" type="CharacterBody3D" unique_id=989046255]
-script = ExtResource("1_7qchm")
+[node name="EnemyCoyote" type="CharacterBody3D" unique_id=989046255]
+script = ExtResource("1_ynxh8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2127880748]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -61,9 +61,13 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.0618896, 0)
 billboard = 2
 sprite_frames = SubResource("SpriteFrames_g4v7s")
 
-[node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("2_pqhw6")]
+[node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("3_cjjl2")]
 
 [node name="AttackCooldown" type="Timer" parent="." unique_id=1847164320]
+one_shot = true
+
+[node name="ShootCooldown" type="Timer" parent="." unique_id=1058674387]
+wait_time = 1.5
 one_shot = true
 
 [node name="VisualRoot" type="Node3D" parent="." unique_id=102721020]
@@ -145,3 +149,6 @@ shape = SubResource("SphereShape3D_d0u6y")
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -0.0032520294, 0)
 visible = false
 mesh = SubResource("SphereMesh_3gngh")
+
+[node name="GunBarrel" type="Marker3D" parent="VisualRoot" unique_id=1003535000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6941047, 1.1224213, 0)

@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var AttackDamage: float = 10.0
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var attack_cooldown: Timer = $AttackCooldown
+@onready var visual_root: Node3D = $VisualRoot
 
 var player: CharacterBody3D = null
 
@@ -15,7 +16,9 @@ func _ready() -> void:
 #movement of the enemy
 func _process(_delta: float) -> void:
 	navigation_agent.set_target_position(player.global_position)
-	
+	var target := player.global_position
+	target.y = visual_root.global_position.y
+	visual_root.look_at(target, Vector3.UP)
 		
 func _physics_process(_delta: float) -> void:
 	

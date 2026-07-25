@@ -37,21 +37,21 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area3D) -> void:
+	print("Bala entrou na área: ", area.name)
+	print("Grupos da área: ", area.get_groups())
+	
 	if has_hit:
 		return
 	
-	if not area.is_in_group("Hitbox"):
+	if not area.is_in_group("PlayerHitbox"):
+		return
+		
+	var player = _find_player(area)
+	
+	if player == null:
 		return
 		
 	has_hit = true
-	
-	var enemy = _find_enemy(area)
-	
-	if enemy == null:
-		queue_free()
-		return
-		
-	var health_component = enemy.get_node("HealthComponent")
 	
 	var final_damage: float = damage
 	
@@ -59,8 +59,8 @@ func _on_area_entered(area: Area3D) -> void:
 		final_damage *= headshot_multiplier
 		print("HEADSHOT!")
 		
-	var attack = Attack.new(final_damage, self)
-	health_component.damage(attack)
+	var attack := Attack.new(final_damage, self)
+	player.health_component.damage(attack)
 	
 	queue_free()
 
@@ -76,16 +76,34 @@ func _find_enemy(hitbox: Node) -> Node:
 	return null
 	
 func _on_body_entered(body: Node3D) -> void:
-
 	if has_hit:
 		return
+	
+	if body.is_in_group("Player"):
+		has_hit = true
 
-	if not body.is_in_group("World"):
+		var attack := Attack.new(damage, self)
+		body.health_component.damage(attack)
+
+		queue_free()
 		return
 
-	has_hit = true
 
-	queue_free()
+	if body.is_in_group("World"):
+		has_hit = true
+
+		queue_free()
+
+func _find_player(hitbox: Node) -> Node:
+	var current_node: Node = hitbox
+
+	while current_node != null:
+		if current_node.is_in_group("Player"):
+			return current_node
+
+		current_node = current_node.get_parent()
+
+	return null
 
 func _ready() -> void:
 	if not area_entered.is_connected(_on_area_entered):
