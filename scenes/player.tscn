@@ -30,12 +30,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7482731, 0)
 current = true
 
 [node name="Revolver" parent="Head/Camera3D" unique_id=187879373 instance=ExtResource("2_qlg0r")]
-transform = Transform3D(0.9876283, -0.04877264, 0.14903563, 0.064133994, 0.99291193, -0.10006751, -0.14309868, 0.10838776, 0.98375565, 0.35488814, -0.08040559, -0.7499223)
+transform = Transform3D(0.9876283, -0.04877264, 0.14903563, 0.064133994, 0.99291193, -0.10006751, -0.14309868, 0.10838776, 0.98375565, 0.35488814, -0.04133427, -0.7058687)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Head/Camera3D" unique_id=1001775197]
 
 [node name="Weapon" type="Sprite2D" parent="Head/Camera3D/CanvasLayer" unique_id=1948241857]
 position = Vector2(914, 490)
+rotation = -0.034906585
 scale = Vector2(0.48458195, 0.484582)
 texture = ExtResource("3_fjrip")
 

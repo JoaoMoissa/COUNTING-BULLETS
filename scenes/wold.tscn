@@ -30,6 +30,7 @@ uv1_triplanar = true
 [node name="Main" type="Node3D" unique_id=1391810359]
 
 [node name="Wold" type="NavigationRegion3D" parent="." unique_id=1398679537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.18112373)
 navigation_mesh = SubResource("NavigationMesh_baeb5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Wold" unique_id=836681413]

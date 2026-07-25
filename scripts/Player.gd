@@ -100,12 +100,21 @@ func _handle_shoot() -> void:
 	if not result.is_empty():
 		target_position = result["position"]
 
+	var distance_from_barrel: float = gun_barrel.global_position.distance_to(target_position)
+	
+	if distance_from_barrel < 0.5:
+		var camera_forward: Vector3 = -camera.global_transform.basis.z
+		var camera_left: Vector3 = -camera.global_transform.basis.x
+
+		var shoot_direction: Vector3 = (camera_forward + camera_left * 0.45).normalized()
+		target_position = camera.global_position + shoot_direction * 1000.0
+		
 	#bullet
 	var instance = bullet.instantiate()
 	get_parent().add_child(instance)
 	instance.global_position = gun_barrel.global_position
 	instance.look_at(target_position, Vector3.UP)
-
+	
 	if ammo_in_mag == 0:
 		can_reload = false
 		reload_cooldown.start()
