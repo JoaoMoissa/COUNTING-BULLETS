@@ -18,12 +18,20 @@ var state: TutorialState = TutorialState.STARTING
 var tutorial_active: bool = true
 
 
+
 func _ready() -> void:
 	add_to_group("TutorialController")
-	
+
+	if TutorialData.completed:
+		MissionManager.refresh_missions()
+		player.ammo_label.visible = false
+		player.reload_label.visible = false
+		_start_wave_two()
+		queue_free()
+		return
+
 	await get_tree().process_frame
 	_start_tutorial()
-
 
 func _spawn_tutorial_enemy() -> void:
 	wave_manager.start_tutorial_enemy()
@@ -31,15 +39,24 @@ func _spawn_tutorial_enemy() -> void:
 
 func _start_tutorial() -> void:
 	MissionManager.refresh_missions()
+
 	state = TutorialState.STARTING
+
 	ammo_label.show()
 	reload_label.show()
+
 	cat_dialogue.start_dialogue([
 		"Looks like you're alive.",
 		"Hey! You can thank me later.",
 		"Look out! Enemies are coming.",
 		"I want to see what you're capable of."
 	])
+
+	await cat_dialogue.dialogue_finished
+
+	state = TutorialState.WAITING_FIRST_KILL
+
+	_spawn_tutorial_enemy()
 
 	await cat_dialogue.dialogue_finished
 
@@ -109,15 +126,22 @@ func _start_wave_two() -> void:
 func finish_tutorial() -> void:
 	state = TutorialState.FINISHED
 	tutorial_active = false
+
+	TutorialData.completed = true
+
 	player.ammo_label.visible = false
 	player.reload_label.visible = false
-	
+
 	print("Tutorial concluído")
+
 	cat_dialogue.start_dialogue([
-		"Don't forget, after finishing your ammunition...", 
+		"Don't forget, after finishing your ammunition...",
 		"you must wait 5 seconds to reload.",
 		"If you try to reload at the wrong time...",
 		"it will make me reset the countdown.",
 		"Now count for yourself!"
 	])
+
+	await cat_dialogue.dialogue_finished
+
 	_start_wave_two()
