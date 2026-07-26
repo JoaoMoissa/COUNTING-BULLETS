@@ -3,7 +3,10 @@ signal health_changed(new_health)
 
 @export var MaxHealth: float = 100.0
 
-var health: float = MaxHealth
+var health: float
+
+func _ready() -> void:
+	health = MaxHealth
 
 func damage(attack: Attack) -> void:
 	health -= attack.damage
