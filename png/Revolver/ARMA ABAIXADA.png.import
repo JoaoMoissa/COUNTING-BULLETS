@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv8m1dascp3n3"
-path="res://.godot/imported/ARMA FINALIZADA.png-4b8357a3d4b937b92b89489d6b15b9d2.ctex"
+uid="uid://cqo5axju1myen"
+path="res://.godot/imported/ARMA ABAIXADA.png-1d9e9740c1b89fd121ddb013d9c3f32a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://png/ARMA FINALIZADA.png"
-dest_files=["res://.godot/imported/ARMA FINALIZADA.png-4b8357a3d4b937b92b89489d6b15b9d2.ctex"]
+source_file="res://png/Revolver/ARMA ABAIXADA.png"
+dest_files=["res://.godot/imported/ARMA ABAIXADA.png-1d9e9740c1b89fd121ddb013d9c3f32a.ctex"]
 
 [params]
 

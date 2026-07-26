@@ -38,6 +38,7 @@ var can_reload = false
 @onready var score_label: Label = $Head/Recoil/Camera3D/CanvasLayer/ScoreLabel #ScoreLabel to show score
 @onready var recoil = $Head/Recoil #recoil
 @onready var death_screen: Control = get_tree().current_scene.get_node("DeathCanvas/DeathScreen")
+@onready var gun_sprite: AnimatedSprite2D = $Head/Recoil/Camera3D/CanvasLayer/Weapon
 
 func _update_ammo_ui():
 	ammo_label.text = str(ammo_in_mag)
@@ -59,6 +60,8 @@ func _ready():
 	ScoreManager.reset()
 	ScoreManager.score_changed.connect(_on_score_changed)
 	_on_score_changed(ScoreManager.score)
+	
+	gun_sprite.play("idle")
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -88,7 +91,9 @@ func _handle_shoot() -> void:
 
 	ammo_in_mag -= 1
 	_update_ammo_ui()
+	gun_sprite.play("shoot")
 	recoil.add_recoil()
+
 
 	#aim in middle.
 	var screen_center: Vector2 = get_viewport().get_visible_rect().size / 2.0 
@@ -126,6 +131,12 @@ func _handle_shoot() -> void:
 		can_reload = false
 		reload_cooldown.start()
 
+# revolver animation
+func _on_weapon_animation_finished() -> void:
+	if gun_sprite.animation == "shoot":
+		gun_sprite.play("idle")
+		
+		
 func _handle_reload():
 	if Input.is_action_just_pressed("reload"):
 		_reload()
