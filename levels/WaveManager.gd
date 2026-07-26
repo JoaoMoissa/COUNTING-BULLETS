@@ -46,10 +46,16 @@ func _spawn_one() -> void:
 		spawn_timer.stop()                                  # já nasceram todos
 
 func _on_enemy_died() -> void:
+	if not is_inside_tree(): 
+		return
 	alive -= 1
 	if to_spawn == 0 and alive == 0:
 		_end_wave()
 
 func _end_wave() -> void:
+	if not is_inside_tree():
+		return
 	await get_tree().create_timer(wave_delay).timeout
+	if not is_inside_tree():    # cena pode ter mudado durante a espera
+		return
 	_start_next_wave()

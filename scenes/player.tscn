@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://msu1tfpfy18u" path="res://scenes/healthbar.tscn" id="4_fjrip"]
 [ext_resource type="Script" uid="uid://dwmwjk6yywav0" path="res://scripts/reticle.gd" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://crf4k6ufqf2k" path="res://png/mira.png" id="8_smehm"]
+[ext_resource type="PackedScene" uid="uid://bkyfx7ejaicur" path="res://scenes/pause_menu.tscn" id="9_y4r1p"]
+[ext_resource type="PackedScene" uid="uid://b6lg3ivxc20ck" path="res://scenes/death_screen.tscn" id="10_d2wvv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 
@@ -151,5 +153,14 @@ transform = Transform3D(0.9, 0, 0, 0, 0.7, 0, 0, 0, 0.9, 0, -0.30841637, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_yf5fn")
 surface_material_override/0 = SubResource("StandardMaterial3D_57qmd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2110496977]
+process_mode = 3
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=488864533 instance=ExtResource("9_y4r1p")]
+
+[node name="DeathCanvas" type="CanvasLayer" parent="." unique_id=125448542]
+
+[node name="DeathScreen" parent="DeathCanvas" unique_id=2059064050 instance=ExtResource("10_d2wvv")]
 
 [connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]

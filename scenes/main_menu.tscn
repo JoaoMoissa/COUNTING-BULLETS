@@ -120,6 +120,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="OptionsMenu" parent="." unique_id=1166744163 instance=ExtResource("11_lgwnu")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="ButtonsArea/VBoxContainer/start" to="." method="_on_start_pressed"]
