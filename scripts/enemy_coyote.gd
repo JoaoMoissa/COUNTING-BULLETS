@@ -17,10 +17,12 @@ const bullet = preload("res://scenes/enemy_bullet.tscn")
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var visual_root: Node3D = $VisualRoot
 
+@onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 
 var player: CharacterBody3D = null
 var preparing_to_shoot: bool = false
+var is_shooting: bool = false
 
 func _ready() -> void:
 	player = get_tree().get_nodes_in_group("Player")[0]
@@ -45,11 +47,25 @@ func try_shoot() -> void:
 		shoot_cooldown.start()
 
 func shoot() -> void:
+
+	if is_shooting:
+		return
+
+	is_shooting = true
+
+	sprite.play("shoot")
+
 	var instance = bullet.instantiate()
 	get_parent().add_child(instance)
 	instance.global_position = gun_barrel.global_position
 	instance.look_at(player.global_position, Vector3.UP)
 
+	await get_tree().create_timer(0.4).timeout
+
+	if is_instance_valid(sprite):
+		sprite.play("idle")
+
+	is_shooting = false
 
 #movement of the enemy
 func _process(_delta: float) -> void:
