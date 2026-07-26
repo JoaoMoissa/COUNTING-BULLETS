@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1w56iapqdh3d" path="res://scripts/enemy_coyote.gd" id="1_ynxh8"]
 [ext_resource type="Texture2D" uid="uid://clm8wa1srbs2s" path="res://png/AGARAG.png" id="2_6dkc7"]
+[ext_resource type="Texture2D" uid="uid://p2j3o0xmkfy2" path="res://png/COIOTE ATIRANDO.png" id="3_6dkc7"]
 [ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="3_cjjl2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_57qmd"]
@@ -22,7 +23,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_uvc0s")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6dkc7")
+}],
+"loop": 1,
+"name": &"shoot",
 "speed": 5.0
 }]
 
@@ -44,13 +53,6 @@ animations = [{
 
 [node name="EnemyCoyote" type="CharacterBody3D" unique_id=989046255]
 script = ExtResource("1_ynxh8")
-ShootDistance = null
-ShootDelay = null
-Points = null
-HeadshotBonus = null
-MoveSpeed = null
-AttackReach = null
-AttackDamage = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2127880748]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -68,6 +70,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3gngh")
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.0618896, 0)
 billboard = 2
 sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("3_cjjl2")]
 MaxHealth = 50.0

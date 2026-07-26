@@ -26,12 +26,16 @@ const FOV_CHANGE = 1.5
 const bullet = preload("res://scenes/bullet.tscn")
 
 # Ammo variables
-const MAG_SIZE = 6
+var mag_size: int = 6  # mag capacity (buffable by mission rewards)
 const RELOAD_TIMER: float = 1.5
-var ammo_in_mag = MAG_SIZE
+var ammo_in_mag = mag_size
 var reserve_ammo = 0
 var is_reloading = false
 var can_reload = false
+
+# Combat modifiers (buffable by mission rewards)
+var bullet_damage_bonus: float = 0.0
+var critical_chance: float = 0.0
 
 @onready var head = $Head
 @onready var camera = $Head/Recoil/Camera3D
@@ -42,6 +46,10 @@ var can_reload = false
 @onready var ammo_label: Label = $Head/Recoil/Camera3D/CanvasLayer/AmmoLabel
 @onready var reload_label: Label = $Head/Recoil/Camera3D/CanvasLayer/ReloadLabel
 @onready var score_label: Label = $Head/Recoil/Camera3D/CanvasLayer/ScoreLabel #ScoreLabel to show score
+@onready var round_label: Label = $Head/Recoil/Camera3D/CanvasLayer/RoundLabel
+@onready var mission_label: Label = $Head/Recoil/Camera3D/CanvasLayer/MissionLabel
+
+
 @onready var recoil = $Head/Recoil #recoil
 @onready var death_screen: Control = $DeathCanvas/DeathScreen
 #weapon animation
@@ -79,6 +87,21 @@ func _ready():
 	ScoreManager.score_changed.connect(_on_score_changed)
 	_on_score_changed(ScoreManager.score)
 	
+	# Reset Mission
+	MissionManager.reset()
+	
+	# Wave HUD
+	var wm = get_tree().get_first_node_in_group("WaveManager")
+	if wm:
+		wm.wave_changed.connect(_on_wave_changed)
+		_on_wave_changed(wm.current_wave)
+
+	# Mission HUD
+	MissionManager.mission_accepted.connect(_on_mission_updated)
+	MissionManager.mission_progress.connect(_on_mission_updated)
+	MissionManager.mission_completed.connect(_on_mission_completed)
+	_refresh_mission_ui()
+	
 	gun_sprite.play("idle")
 
 func _input(event):
@@ -90,6 +113,9 @@ func _input(event):
 
 #add the reload label
 func _update_reload_ui():
+	if !ammo_label.visible:
+		return
+
 	if reload_cooldown.is_stopped():
 		reload_label.visible = false
 	else:
@@ -98,16 +124,29 @@ func _update_reload_ui():
 
 #shoot
 func _handle_shoot() -> void:
-	if is_reloading:
+	if is_reloading or is_dead:
 		return
 
 	if not Input.is_action_just_pressed("shoot"):
 		return
 
 	if ammo_in_mag <= 0:
+		var tutorial_controller = get_tree().get_first_node_in_group("TutorialController")
+
+		if (tutorial_controller and tutorial_controller.tutorial_active):
+			return
+
+		on_death()
 		return
 
 	ammo_in_mag -= 1
+	
+	if ammo_in_mag == 0:
+		var tutorial_controller = get_tree().get_first_node_in_group("TutorialController")
+
+		if tutorial_controller:
+			tutorial_controller.notify_magazine_empty()
+	
 	_update_ammo_ui()
 	gun_sprite.play("shoot")
 	_show_random_muzzle_flash()
@@ -147,6 +186,12 @@ func _handle_shoot() -> void:
 		
 	#bullet
 	var instance = bullet.instantiate()
+	instance.damage += bullet_damage_bonus  # apply damage buff from rewards
+	if randf() < critical_chance:
+		instance.damage *= 2
+		print("💥 CRITICAL HIT! Damage: ", instance.damage)
+	else:
+		print("Normal hit. Damage: ", instance.damage)
 	get_parent().add_child(instance)
 	instance.global_position = gun_barrel.global_position
 	instance.look_at(target_position, Vector3.UP)
@@ -261,11 +306,19 @@ func _reload():
 	_start_reload_animation()
 	await get_tree().create_timer(RELOAD_TIMER).timeout
 	_finish_reload_animation()
-	ammo_in_mag = MAG_SIZE
+	ammo_in_mag = mag_size
 	_update_ammo_ui()
 	is_reloading = false
 	can_reload = false
 
+	var tutorial_controller = get_tree().get_first_node_in_group(
+	"TutorialController"
+)
+
+	if tutorial_controller:
+		tutorial_controller.notify_player_reloaded()
+		
+		
 func _physics_process(delta: float) -> void:
 	
 		
@@ -334,3 +387,23 @@ func on_death(_attack: Attack = null) -> void:
 
 func _on_reload_cooldown_timeout() -> void:
 	can_reload = true
+
+# Missions
+func _on_wave_changed(wave):
+	round_label.text = "%d" % wave
+
+func _on_mission_updated(mission):
+	mission_label.text = "MISSION: %s  (%d/%d)" % [mission.description, mission.progress, mission.target]
+
+func _on_mission_completed(_mission):
+	mission_label.text = "Mission Completed"
+	await get_tree().create_timer(2.0).timeout
+	if is_inside_tree():
+		_refresh_mission_ui()
+
+func _refresh_mission_ui():
+	if MissionManager.has_active_mission():
+		_on_mission_updated(MissionManager.active_mission)
+	else:
+		mission_label.text = "No Mission Active"
+		

@@ -1,0 +1,147 @@
+extends Node
+
+enum TutorialState {
+	STARTING,
+	WAITING_FIRST_KILL,
+	WAITING_EMPTY_MAGAZINE,
+	WAITING_RELOAD,
+	FINISHED
+}
+
+@onready var cat_dialogue: Control = $"../Player/CatCanvas/CatDialogue"
+@onready var player = $"../Player"
+@onready var wave_manager = $"../WaveManager"
+@onready var ammo_label: Label = $"../Player/Head/Recoil/Camera3D/CanvasLayer/AmmoLabel"
+@onready var reload_label: Label = $"../Player/Head/Recoil/Camera3D/CanvasLayer/ReloadLabel"
+
+var state: TutorialState = TutorialState.STARTING
+var tutorial_active: bool = true
+
+
+
+func _ready() -> void:
+	add_to_group("TutorialController")
+
+	if TutorialData.completed:
+		MissionManager.refresh_missions()
+		player.ammo_label.visible = false
+		player.reload_label.visible = false
+		_start_wave_two()
+		queue_free()
+		return
+
+	await get_tree().process_frame
+	_start_tutorial()
+
+func _spawn_tutorial_enemy() -> void:
+	wave_manager.start_tutorial_enemy()
+
+
+func _start_tutorial() -> void:
+	MissionManager.refresh_missions()
+
+	state = TutorialState.STARTING
+
+	ammo_label.show()
+	reload_label.show()
+
+	cat_dialogue.start_dialogue([
+		"Looks like you're alive.",
+		"Hey! You can thank me later.",
+		"Look out! Enemies are coming.",
+		"I want to see what you're capable of."
+	])
+
+	await cat_dialogue.dialogue_finished
+
+	state = TutorialState.WAITING_FIRST_KILL
+
+	_spawn_tutorial_enemy()
+
+	await cat_dialogue.dialogue_finished
+
+	state = TutorialState.WAITING_FIRST_KILL
+
+	_spawn_tutorial_enemy()
+
+
+func _start_tutorial_combat() -> void:
+	wave_manager.start_tutorial_combat()
+
+
+func notify_enemy_killed() -> void:
+	if not tutorial_active:
+		return
+
+	if state != TutorialState.WAITING_FIRST_KILL:
+		return
+
+	state = TutorialState.WAITING_EMPTY_MAGAZINE
+
+	cat_dialogue.start_dialogue([
+		"Heh... only that?",
+		"Okay, let's increase the level.",
+		"I won't let you reload the weapon until it's empty."
+	])
+
+	await cat_dialogue.dialogue_finished
+
+	_start_tutorial_combat()
+
+
+func notify_magazine_empty() -> void:
+	if not tutorial_active:
+		return
+
+	if state != TutorialState.WAITING_EMPTY_MAGAZINE:
+		return
+
+	state = TutorialState.WAITING_RELOAD
+
+	cat_dialogue.start_dialogue([
+		"Careful!",
+		"If you pull the trigger without bullets...",
+		"I'm going to kill you.",
+		"The curse needs a moment to release the cylinder.",
+		"Wait until the countdown ends.",
+	])
+
+	await cat_dialogue.dialogue_finished
+
+
+func notify_player_reloaded() -> void:
+	if not tutorial_active:
+		return
+
+	if state != TutorialState.WAITING_RELOAD:
+		return
+
+	finish_tutorial()
+
+
+func _start_wave_two() -> void:
+	wave_manager.start_wave_two()
+
+
+func finish_tutorial() -> void:
+	state = TutorialState.FINISHED
+	tutorial_active = false
+
+	TutorialData.completed = true
+
+	player.ammo_label.visible = false
+	player.reload_label.visible = false
+
+	print("Tutorial concluído")
+
+	cat_dialogue.start_dialogue([
+		"Don't forget, after finishing your ammunition...",
+		"you must wait 5 seconds to reload.",
+		"If you try to reload at the wrong time...",
+		"it will make me reset the countdown.",
+		"Now count for yourself!"
+	])
+
+	await cat_dialogue.dialogue_finished
+
+	_start_wave_two()
