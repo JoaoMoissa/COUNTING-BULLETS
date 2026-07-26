@@ -246,6 +246,7 @@ current = true
 transform = Transform3D(0.9876283, -0.04877264, 0.14903563, 0.064133994, 0.99291193, -0.10006751, -0.14309868, 0.10838776, 0.98375565, 0.35488814, -0.04133427, -0.7058687)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Head/Recoil/Camera3D" unique_id=1001775197]
+layer = 0
 
 [node name="AmmoLabel" type="Label" parent="Head/Recoil/Camera3D/CanvasLayer" unique_id=1540089345]
 offset_left = 973.0

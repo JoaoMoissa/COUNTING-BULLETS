@@ -1,6 +1,6 @@
 extends Control
 
-@onready var buttons: Array = [$Panel/Option1, $Panel/Option2, $Panel/Option3]
+@onready var buttons: Array = [$BackgroundImage/Option1, $BackgroundImage/Option2, $BackgroundImage/Option3]
 var options: Array = []
 var is_open := false
 

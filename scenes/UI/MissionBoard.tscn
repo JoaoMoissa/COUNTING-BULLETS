@@ -1,6 +1,29 @@
 [gd_scene format=3 uid="uid://ch1jnntxyu5uw"]
 
 [ext_resource type="Script" uid="uid://46vug5ws217u" path="res://scenes/UI/controlMissionUI.gd" id="1_ugld5"]
+[ext_resource type="Texture2D" uid="uid://cdxap50gwtchq" path="res://png/missionsBoard.png" id="2_nhi3l"]
+[ext_resource type="FontFile" uid="uid://d2lcbhg6sx6cf" path="res://png/font/Molot.otf" id="3_tpa38"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mk0ir"]
+bg_color = Color(0, 0, 0, 1)
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jvsu"]
+bg_color = Color(0.7372549, 0, 0, 1)
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivr5q"]
+bg_color = Color(0, 1.1488971e-05, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2lly"]
+bg_color = Color(0.6666667, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0t3l2"]
+bg_color = Color(1.1488971e-05, 1.1488971e-05, 1.1488971e-05, 1)
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osc5d"]
+bg_color = Color(0.7254902, 0, 0, 1)
 
 [node name="MissionBoard" type="Control" unique_id=455243979]
 layout_mode = 3
@@ -21,30 +44,55 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_ugld5")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=371984067]
-layout_mode = 0
-offset_left = 169.0
-offset_top = 78.0
-offset_right = 970.0
-offset_bottom = 541.0
+[node name="BackgroundImage" type="TextureRect" parent="CanvasLayer/Control" unique_id=1044065601]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -307.00003
+offset_right = 961.0
+offset_bottom = 653.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.125, 1.125)
+texture = ExtResource("2_nhi3l")
 
-[node name="Option1" type="Button" parent="CanvasLayer/Control/Panel" unique_id=124287283]
+[node name="Option1" type="Button" parent="CanvasLayer/Control/BackgroundImage" unique_id=124287283]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 404.0
-offset_right = 247.0
-offset_bottom = 432.0
+offset_left = 239.11111
+offset_top = 601.77783
+offset_right = 445.1111
+offset_bottom = 651.77783
+theme_override_colors/font_color = Color(0.79607844, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_fonts/font = ExtResource("3_tpa38")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mk0ir")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5jvsu")
+autowrap_mode = 3
 
-[node name="Option2" type="Button" parent="CanvasLayer/Control/Panel" unique_id=1668530351]
+[node name="Option2" type="Button" parent="CanvasLayer/Control/BackgroundImage" unique_id=1668530351]
 layout_mode = 0
-offset_left = 296.0
-offset_top = 402.0
-offset_right = 502.0
-offset_bottom = 430.0
+offset_left = 321.7778
+offset_top = 456.88892
+offset_right = 527.77783
+offset_bottom = 506.88892
+theme_override_colors/font_color = Color(0.7411765, 0.047058824, 0, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_fonts/font = ExtResource("3_tpa38")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ivr5q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e2lly")
+autowrap_mode = 3
 
-[node name="Option3" type="Button" parent="CanvasLayer/Control/Panel" unique_id=1396955998]
+[node name="Option3" type="Button" parent="CanvasLayer/Control/BackgroundImage" unique_id=1396955998]
 layout_mode = 0
-offset_left = 552.0
-offset_top = 403.0
-offset_right = 758.0
-offset_bottom = 431.0
+offset_left = 614.2222
+offset_top = 520.8889
+offset_right = 820.2222
+offset_bottom = 570.8889
+theme_override_colors/font_color = Color(0.8117647, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_fonts/font = ExtResource("3_tpa38")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0t3l2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_osc5d")
+autowrap_mode = 3
