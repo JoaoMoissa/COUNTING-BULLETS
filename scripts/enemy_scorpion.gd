@@ -55,5 +55,5 @@ func on_death(attack: Attack = null) -> void:
 	var points: int = Points
 	if attack != null and attack.is_headshot:
 		points = int(points * HeadshotBonus)
-	ScoreManager.add_kill(points)
+	ScoreManager.add_kill(points, attack != null and attack.is_headshot)
 	queue_free()
