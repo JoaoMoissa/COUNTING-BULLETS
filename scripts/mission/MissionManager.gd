@@ -6,6 +6,7 @@ signal mission_accepted(mission)
 
 var active_mission: Mission = null
 var current_wave: int = 0
+var offered_missions: Array[Mission] = []
 
 func reset() -> void:
 	active_mission = null
@@ -18,9 +19,18 @@ func _ready() -> void:
 
 func has_active_mission() -> bool:
 	return active_mission != null
+	
+func _refresh_missions() -> void:
+	offered_missions.clear()
 
+	for i in range(3):
+		offered_missions.append(_random_mission())
+		
 func offer_missions() -> Array:
-	return [_random_mission(), _random_mission(), _random_mission()]
+	if offered_missions.is_empty():
+		_refresh_missions()
+
+	return offered_missions
 
 func accept(m: Mission) -> void:
 	active_mission = m
@@ -50,7 +60,7 @@ func _random_mission() -> Mission:
 
 func _random_reward() -> Reward:
 	var r := Reward.new()
-	match randi() % 4:
+	match randi() % 5:
 		0:
 			r.type = Reward.Type.FULL_HEAL
 			r.text = "Full heal"
@@ -66,6 +76,10 @@ func _random_reward() -> Reward:
 			r.type = Reward.Type.DAMAGE
 			r.amount = 10
 			r.text = "+10 damage"
+		4:
+			r.type = Reward.Type.CRIT_CHANCE
+			r.amount = 0.10
+			r.text = "+10% Critical Chance"
 	return r
 
 func _on_enemy_killed(is_headshot: bool) -> void:
@@ -96,6 +110,7 @@ func _complete() -> void:
 	_grant_reward()
 	mission_completed.emit(active_mission)
 	active_mission = null
+	_refresh_missions()
 
 func _grant_reward() -> void:
 	var player = get_tree().get_first_node_in_group("Player")

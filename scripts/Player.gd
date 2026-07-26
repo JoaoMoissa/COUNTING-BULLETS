@@ -35,6 +35,7 @@ var can_reload = false
 
 # Combat modifiers (buffable by mission rewards)
 var bullet_damage_bonus: float = 0.0
+var critical_chance: float = 0.0
 
 @onready var head = $Head
 @onready var camera = $Head/Recoil/Camera3D
@@ -112,6 +113,9 @@ func _input(event):
 
 #add the reload label
 func _update_reload_ui():
+	if !ammo_label.visible:
+		return
+
 	if reload_cooldown.is_stopped():
 		reload_label.visible = false
 	else:
@@ -183,6 +187,11 @@ func _handle_shoot() -> void:
 	#bullet
 	var instance = bullet.instantiate()
 	instance.damage += bullet_damage_bonus  # apply damage buff from rewards
+	if randf() < critical_chance:
+		instance.damage *= 2
+		print("💥 CRITICAL HIT! Damage: ", instance.damage)
+	else:
+		print("Normal hit. Damage: ", instance.damage)
 	get_parent().add_child(instance)
 	instance.global_position = gun_barrel.global_position
 	instance.look_at(target_position, Vector3.UP)
@@ -397,3 +406,4 @@ func _refresh_mission_ui():
 		_on_mission_updated(MissionManager.active_mission)
 	else:
 		mission_label.text = "No Mission Active"
+		

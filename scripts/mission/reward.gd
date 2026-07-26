@@ -4,7 +4,13 @@ extends RefCounted
 # Direct buffs granted on mission completion.
 # Kept data-driven so a currency/shop type can be added later without
 # touching the mission logic.
-enum Type { FULL_HEAL, MAX_HEALTH, MAG_SIZE, DAMAGE }
+enum Type {
+	FULL_HEAL,
+	MAX_HEALTH,
+	MAG_SIZE,
+	DAMAGE,
+	CRIT_CHANCE
+}
 
 var type: Type
 var amount: float = 0.0
@@ -31,3 +37,6 @@ func apply(player) -> void:
 			player._update_ammo_ui()
 		Type.DAMAGE:
 			player.bullet_damage_bonus += amount
+			
+		Type.CRIT_CHANCE:
+			player.critical_chance += amount

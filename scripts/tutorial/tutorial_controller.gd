@@ -11,6 +11,8 @@ enum TutorialState {
 @onready var cat_dialogue: Control = $"../Player/CatCanvas/CatDialogue"
 @onready var player = $"../Player"
 @onready var wave_manager = $"../WaveManager"
+@onready var ammo_label: Label = $"../Player/Head/Recoil/Camera3D/CanvasLayer/AmmoLabel"
+@onready var reload_label: Label = $"../Player/Head/Recoil/Camera3D/CanvasLayer/ReloadLabel"
 
 var state: TutorialState = TutorialState.STARTING
 var tutorial_active: bool = true
@@ -18,7 +20,7 @@ var tutorial_active: bool = true
 
 func _ready() -> void:
 	add_to_group("TutorialController")
-
+	
 	await get_tree().process_frame
 	_start_tutorial()
 
@@ -29,7 +31,8 @@ func _spawn_tutorial_enemy() -> void:
 
 func _start_tutorial() -> void:
 	state = TutorialState.STARTING
-
+	ammo_label.show()
+	reload_label.show()
 	cat_dialogue.start_dialogue([
 		"Looks like you're alive.",
 		"Hey! You can thank me later.",
@@ -104,7 +107,11 @@ func _start_wave_two() -> void:
 func finish_tutorial() -> void:
 	state = TutorialState.FINISHED
 	tutorial_active = false
-
+	player.ammo_label.visible = false
+	player.reload_label.visible = false
+	
 	print("Tutorial concluído")
-
+	cat_dialogue.start_dialogue([
+		"Now count for yourself!"
+	])
 	_start_wave_two()
