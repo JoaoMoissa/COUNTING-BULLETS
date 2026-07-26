@@ -56,7 +56,7 @@ func _ready():
 	_update_ammo_ui()
 	
 	# Update score
-	ScoreManager.reset()
+	ScoreManager.reset() 
 	ScoreManager.score_changed.connect(_on_score_changed)
 	_on_score_changed(ScoreManager.score)
 
