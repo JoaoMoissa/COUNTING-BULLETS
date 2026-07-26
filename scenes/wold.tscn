@@ -71,10 +71,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5806465, -9.536743e-07, -
 [node name="EnemyCoyote" parent="." unique_id=512041405 instance=ExtResource("5_e62vq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.12267, 0.06460655, -21.060123)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=849135261]
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=849135261]
 process_mode = 3
 
-[node name="PauseMenu" parent="CanvasLayer" unique_id=488864533 instance=ExtResource("6_u4o2j")]
+[node name="PauseMenu" parent="PauseCanvas" unique_id=488864533 instance=ExtResource("6_u4o2j")]
 
 [node name="EnemyScorpion" parent="." unique_id=989046255 instance=ExtResource("6_c0o0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.587883)

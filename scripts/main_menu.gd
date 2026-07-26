@@ -6,7 +6,7 @@ func _ready() -> void:
 	options_menu.hide()
 	
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://scenes/wold.tscn")
+	get_tree().change_scene_to_file("res://levels/main_world.tscn")
 
 
 func _on_options_pressed():
