@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dpqrh41s6ti83"]
+
+[ext_resource type="PackedScene" uid="uid://ct8cvj2rg3ybj" path="res://models/Hills_fbx/Mountain_desert_007.fbx" id="1_xyc0v"]
+[ext_resource type="Texture2D" uid="uid://bfggoqep7f5mt" path="res://png/T_Mountains_desert.png" id="2_55l1h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1to3p"]
+albedo_texture = ExtResource("2_55l1h")
+
+[node name="Mountain_desert_007" unique_id=1112613452 instance=ExtResource("1_xyc0v")]
+
+[node name="Mountain_desert_007" parent="." index="0" unique_id=1398591392]
+material_override = SubResource("StandardMaterial3D_1to3p")

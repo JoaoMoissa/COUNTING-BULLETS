@@ -11,10 +11,10 @@ func _ready() -> void:
 func damage(attack: Attack) -> void:
 	health -= attack.damage
 	health_changed.emit(health)
-	
+
 	var parent: Node3D = get_parent()
 	if parent.has_method("on_damage"):
 		parent.on_damage(attack)
-		
+
 	if health <= 0:
 		parent.on_death(attack)

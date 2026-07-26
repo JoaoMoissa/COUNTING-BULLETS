@@ -58,32 +58,29 @@ func _process(_delta: float) -> void:
 	target.y = visual_root.global_position.y
 	visual_root.look_at(target, Vector3.UP)
 		
-func _physics_process(_delta: float) -> void:
-	
-	process_move()
-	var distance_to_player: float = global_position.distance_to(player.global_position)
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	else:
+		velocity.y = 0.0
 
-	if distance_to_player <= ShootDistance:
+	_update_move_velocity()
+	move_and_slide()
+
+	if global_position.distance_to(player.global_position) <= ShootDistance:
 		try_shoot()
-	
 
-func process_move() -> void:
+func _update_move_velocity() -> void:
 	var distance_to_player: float = global_position.distance_to(player.global_position)
-
-	if distance_to_player <= ShootDistance:
-		velocity = Vector3.ZERO
-		move_and_slide()
-		return
-
-	if navigation_agent.is_navigation_finished():
-		velocity = Vector3.ZERO
-		move_and_slide()
+	if distance_to_player <= ShootDistance or navigation_agent.is_navigation_finished():
+		velocity.x = 0.0
+		velocity.z = 0.0
 		return
 
 	var next_position: Vector3 = navigation_agent.get_next_path_position()
-	velocity = global_position.direction_to(next_position) * MoveSpeed
-
-	move_and_slide()
+	var dir: Vector3 = global_position.direction_to(next_position)
+	velocity.x = dir.x * MoveSpeed
+	velocity.z = dir.z * MoveSpeed
 
 func on_death(attack: Attack = null) -> void:
 	var points: int = Points
