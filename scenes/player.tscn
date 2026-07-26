@@ -321,7 +321,7 @@ position = Vector2(914, 490)
 rotation = -0.034906585
 scale = Vector2(0.5880487, 0.58804876)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"idle"
+animation = &"shoot"
 autoplay = "idle"
 
 [node name="ReloadVisual" type="Node2D" parent="Head/Recoil/Camera3D/CanvasLayer/WeaponPivot" unique_id=1001529052]
@@ -416,6 +416,7 @@ layer = 20
 
 [node name="CatDialogue" type="Control" parent="CatCanvas" unique_id=2147340099]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
