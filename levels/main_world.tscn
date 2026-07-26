@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://d27ybhar8whnr"]
+
+[ext_resource type="PackedScene" uid="uid://bbfysrv3nceg6" path="res://scenes/player.tscn" id="1_72rvm"]
+[ext_resource type="Texture2D" uid="uid://bfggoqep7f5mt" path="res://png/T_Mountains_desert.png" id="1_yylme"]
+[ext_resource type="PackedScene" uid="uid://dr5fy6ihnj7xc" path="res://models/map_assets/hill_desert_003.tscn" id="2_telu3"]
+[ext_resource type="PackedScene" uid="uid://8ro3adc3kgnh" path="res://models/map_assets/hill_desert_001.tscn" id="4_y40ln"]
+[ext_resource type="PackedScene" uid="uid://cj67ompona2hp" path="res://models/map_assets/hill_desert_005.tscn" id="5_pusul"]
+[ext_resource type="PackedScene" uid="uid://guo61ibv6a17" path="res://models/map_assets/plateau_desert_004.tscn" id="8_pusul"]
+[ext_resource type="PackedScene" uid="uid://msbfqcn7f1fu" path="res://models/map_assets/mountain_desert_002.tscn" id="8_y40ln"]
+[ext_resource type="PackedScene" uid="uid://2jnbtqhrt1ic" path="res://models/map_assets/plateau_desert_002.tscn" id="9_pusul"]
+[ext_resource type="PackedScene" uid="uid://b33856itkepv8" path="res://models/map_assets/plateau_desert_001.tscn" id="9_y40ln"]
+[ext_resource type="PackedScene" uid="uid://dpqrh41s6ti83" path="res://models/map_assets/mountain_desert_007.tscn" id="10_pusul"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(150, 1, 150)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0u6y"]
+albedo_color = Color(0.47939175, 0.19136348, 9.62615e-08, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_57qmd"]
+size = Vector2(150, 150)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsf8b"]
+albedo_texture = ExtResource("1_yylme")
+
+[node name="MainWorld" type="Node3D" unique_id=2004458005]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=617005654]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=660460701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=248340091]
+material_override = SubResource("StandardMaterial3D_d0u6y")
+mesh = SubResource("QuadMesh_57qmd")
+surface_material_override/0 = SubResource("StandardMaterial3D_tsf8b")
+
+[node name="Player" parent="." unique_id=1757769257 instance=ExtResource("1_72rvm")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=702423428]
+transform = Transform3D(1, 0, 0, 0, -0.034193587, 0.99941534, 0, -0.99941534, -0.034193587, 0, 15, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=574060560]
+transform = Transform3D(1.8660774, 0, 0, 0, 1.8268623, 0, 0, 0, 1.9137056, 0, 0, 1.0922718)
+
+[node name="E_HILL" parent="StaticBody3D2" unique_id=1282031428 instance=ExtResource("2_telu3")]
+transform = Transform3D(1, 0, 0, 0, 1.4573795, 0, 0, 0, 1.3811531, -7.4049263, 0, -44.698914)
+
+[node name="N_HILL" parent="StaticBody3D2" unique_id=1366626350 instance=ExtResource("2_telu3")]
+transform = Transform3D(0.02189736, 0, 1.5632193, 0, 1.9888375, 0, -1.0119585, 0, 0.033825874, -43.203194, -0.12805462, -0.47398758)
+
+[node name="NE_HILL" parent="StaticBody3D2" unique_id=1869225216 instance=ExtResource("4_y40ln")]
+transform = Transform3D(1.4947313, 0, 0, 0, 2.8047996, 0, 0, 0, 1.538146, -41.0871, -0.38776425, -42.26977)
+
+[node name="Hill_desert_007" parent="StaticBody3D2" unique_id=44844845 instance=ExtResource("5_pusul")]
+transform = Transform3D(1.1394635, 0, -1.2401626, 0, 2.2385914, 0, 1.2509372, 0, 1.1296489, 35.6718, 0.15428543, -35.55812)
+
+[node name="W_HILL" parent="StaticBody3D2" unique_id=917237322 instance=ExtResource("2_telu3")]
+transform = Transform3D(-1.5300331, 0, 0.08693959, 0, 2.1287446, 0, -0.054556806, 0, -1.5777194, 22.15134, -0.3038636, 45.708553)
+
+[node name="S_HILL" parent="StaticBody3D2" unique_id=1004103278 instance=ExtResource("2_telu3")]
+transform = Transform3D(0.023153804, 0, -1.2603794, 0, 2.1033537, 0, 1.5270728, 0, 0.087597236, 44.52912, -0.7139425, 7.4454308)
+
+[node name="NO_HILL" parent="StaticBody3D2" unique_id=1531808354 instance=ExtResource("8_y40ln")]
+transform = Transform3D(-1.4771495, 0, 0.9688954, 0, 1.7626134, 0, -1.2465042, 0, -1.1481738, -32.62764, 0.06813495, 34.98629)
+
+[node name="Plateau_desert_005" parent="StaticBody3D2" unique_id=1858196227 instance=ExtResource("8_pusul")]
+transform = Transform3D(1.7, 0, 0, 0, 2.1005576, 0, 0, 0, 2.0739307, -1.2307186, 6.4996317e-07, 73.77666)
+
+[node name="Plateau_desert_003" parent="StaticBody3D2" unique_id=709097477 instance=ExtResource("9_y40ln")]
+transform = Transform3D(0.13136229, 0, -0.085281655, 0, 0.17309669, 0, 0.07380641, 0, 0.15178625, 21.201342, -3.1737814e-06, -26.6176)
+
+[node name="Plateau_desert_004" parent="StaticBody3D2" unique_id=944205644 instance=ExtResource("9_pusul")]
+transform = Transform3D(-0.083584286, 0, 2.2979782, 0, 2.7992249, 0, -2.37095, 0, -0.08101177, 74.66787, 0.7276885, 8.924305)
+
+[node name="Mountain_desert_008" parent="StaticBody3D2" unique_id=1112613452 instance=ExtResource("10_pusul")]
+transform = Transform3D(2.5962713, 0, 0, 0, 2.395607, 0, 0, 0, 1.4992266, 29.750566, -3.3120168e-06, -67.507126)
