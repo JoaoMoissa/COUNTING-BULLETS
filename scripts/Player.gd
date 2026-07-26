@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+var is_dead: bool = false
 var can_take_damage: bool = true
 var speed
 const WALK_SPEED = 5.0
@@ -36,6 +37,7 @@ var can_reload = false
 @onready var reload_label: Label = $Head/Recoil/Camera3D/CanvasLayer/ReloadLabel
 @onready var score_label: Label = $Head/Recoil/Camera3D/CanvasLayer/ScoreLabel #ScoreLabel to show score
 @onready var recoil = $Head/Recoil #recoil
+@onready var death_screen: Control = get_tree().current_scene.get_node("DeathCanvas/DeathScreen")
 
 func _update_ammo_ui():
 	ammo_label.text = str(ammo_in_mag)
@@ -202,7 +204,11 @@ func _headbob(time) -> Vector3:
 	
 
 func on_death(_attack: Attack = null) -> void:
-	get_tree().quit()
+	if is_dead:
+		return
+		
+	is_dead = true
+	death_screen.show_death_screen(ScoreManager.score)
 
 
 func _on_reload_cooldown_timeout() -> void:

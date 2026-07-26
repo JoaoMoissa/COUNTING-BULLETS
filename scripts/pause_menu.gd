@@ -36,6 +36,11 @@ func testEsc():
 	if not Input.is_action_just_pressed("pause"):
 		return
 
+	var player = get_tree().get_first_node_in_group("Player")
+	
+	if player != null and player.is_dead:
+		return
+	
 	if quit_popup.visible:
 		quit_popup.hide()
 	elif options_menu.visible:

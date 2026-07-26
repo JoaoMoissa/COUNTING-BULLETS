@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cgpxb7uacsoo6" path="res://entities/enemy_coyote.tscn" id="5_e62vq"]
 [ext_resource type="PackedScene" uid="uid://cjviwafvlugsy" path="res://entities/enemy_scorpion.tscn" id="6_c0o0c"]
 [ext_resource type="PackedScene" uid="uid://bkyfx7ejaicur" path="res://scenes/pause_menu.tscn" id="6_u4o2j"]
+[ext_resource type="PackedScene" uid="uid://b6lg3ivxc20ck" path="res://scenes/death_screen.tscn" id="7_ad6jt"]
 [ext_resource type="PackedScene" uid="uid://u2em88esv2dp" path="res://models/cactus/ball_cactus.glb" id="7_c0o0c"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_baeb5"]
@@ -80,3 +81,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.587883)
 
 [node name="EnemyScorpion2" parent="." unique_id=1532816878 instance=ExtResource("6_c0o0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.525894)
+
+[node name="DeathCanvas" type="CanvasLayer" parent="." unique_id=1624793942]
+
+[node name="DeathScreen" parent="DeathCanvas" unique_id=2059064050 instance=ExtResource("7_ad6jt")]

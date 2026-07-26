@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://b6lg3ivxc20ck"]
+
+[ext_resource type="Script" uid="uid://dam0cehfcoi5p" path="res://scripts/death_screen.gd" id="1_uyutr"]
+[ext_resource type="Texture2D" uid="uid://cbwo5vqkp7g8b" path="res://png/DeathScreen/YouDiedRed.png" id="2_wfw3d"]
+[ext_resource type="Texture2D" uid="uid://cja3yymv4pa7s" path="res://png/DeathScreen/TryAgainRed.png" id="3_wtkkp"]
+[ext_resource type="Texture2D" uid="uid://dxryrdlclcbkm" path="res://png/DeathScreen/TryAgainWhite.png" id="4_wraau"]
+[ext_resource type="Texture2D" uid="uid://b67sdjg8fep5j" path="res://png/DeathScreen/ReturnToMainMenuRed.png" id="5_vyrcq"]
+[ext_resource type="Texture2D" uid="uid://vt1nv48swn5o" path="res://png/DeathScreen/ReturnToMainMenuWhite.png" id="6_vcvlw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfw3d"]
+bg_color = Color(0.011764706, 0.011764706, 0.011764706, 1)
+
+[node name="DeathScreen" type="Control" unique_id=2059064050]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uyutr")
+
+[node name="Background" type="ColorRect" parent="." unique_id=463052941]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.012617188, 0.012617188, 0.012617188, 0.29411766)
+
+[node name="CenterContainer" type="CenterContainer" parent="Background" unique_id=388041213]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Background/CenterContainer" unique_id=1889070052]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wfw3d")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/CenterContainer/PanelContainer" unique_id=1966659740]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/CenterContainer/PanelContainer/MarginContainer" unique_id=1623208682]
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="DeathLabel" type="TextureRect" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1659081915]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_wfw3d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpacerAfterDeath" type="Control" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1010106608]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="FinalScoreLabel" type="Label" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=955070047]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "FINAL SCORE = 0"
+
+[node name="SpacerAfterScore" type="Control" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=176213120]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TryAgain" type="TextureButton" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1199977126]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_wtkkp")
+texture_hover = ExtResource("4_wraau")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MainMenu" type="TextureButton" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1274505138]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("5_vyrcq")
+texture_hover = ExtResource("6_vcvlw")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TryAgain" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
