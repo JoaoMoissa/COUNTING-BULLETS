@@ -223,7 +223,7 @@ transform = Transform3D(2.390543, 0, 0, 0, 2.390543, 0, 0, 0, 2.390543, -13.8181
 transform = Transform3D(0.05968693, 0, 2.82869, 0, 2.829387, 0, -2.828757, 0, 0.06277114, -80.62051, -0.2339382, 0.1851991)
 
 [node name="NE_HILL" parent="Hills" unique_id=1869225216 instance=ExtResource("4_y40ln")]
-transform = Transform3D(3.618942, 0, 0, 0, 3.618942, 0, 0, 0, 3.618942, -76.67172, -0.7083919, -79.79963)
+transform = Transform3D(3.618942, 0, 0, 0, 8.4198475, 0, 0, 0, 3.618942, -97.29516, -0.7083919, -80.12876)
 
 [node name="Hill_desert_007" parent="Hills" unique_id=44844845 instance=ExtResource("5_pusul")]
 transform = Transform3D(2.315079, 0, -2.54753, 0, 3.486126, 0, 2.606432, 0, 2.379741, 64.99342, -0.01658651, -65.70615)
