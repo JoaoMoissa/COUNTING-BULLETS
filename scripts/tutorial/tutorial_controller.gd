@@ -113,6 +113,7 @@ func finish_tutorial() -> void:
 	
 	print("Tutorial concluído")
 	cat_dialogue.start_dialogue([
+		"Don't forget, after finishing your ammunition you must wait 5 seconds to reload",
 		"Now count for yourself!"
 	])
 	_start_wave_two()
