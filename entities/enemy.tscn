@@ -43,6 +43,7 @@ animations = [{
 [sub_resource type="SphereMesh" id="SphereMesh_3gngh"]
 
 [node name="Enemy" type="CharacterBody3D" unique_id=989046255]
+collision_layer = 32
 script = ExtResource("1_7qchm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2127880748]
@@ -51,6 +52,7 @@ visible = false
 shape = SubResource("CapsuleShape3D_57qmd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=150422884]
+layers = 0
 mesh = SubResource("CapsuleMesh_d0u6y")
 surface_material_override/0 = SubResource("StandardMaterial3D_3gngh")
 
