@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://guo61ibv6a17"]
+
+[ext_resource type="PackedScene" uid="uid://c8u3l3mkytvyg" path="res://models/Hills_fbx/Plateau_desert_004.fbx" id="1_nhg0m"]
+[ext_resource type="Texture2D" uid="uid://bfggoqep7f5mt" path="res://png/T_Mountains_desert.png" id="2_gfdgo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3rt4"]
+albedo_texture = ExtResource("2_gfdgo")
+
+[node name="Plateau_desert_004" unique_id=1858196227 instance=ExtResource("1_nhg0m")]
+
+[node name="Plateau_desert_004" parent="." index="0" unique_id=1404176260]
+surface_material_override/0 = SubResource("StandardMaterial3D_e3rt4")

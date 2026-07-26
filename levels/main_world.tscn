@@ -2,14 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://bbfysrv3nceg6" path="res://scenes/player.tscn" id="1_72rvm"]
 [ext_resource type="Texture2D" uid="uid://bfggoqep7f5mt" path="res://png/T_Mountains_desert.png" id="1_yylme"]
-[ext_resource type="PackedScene" uid="uid://dr5fy6ihnj7xc" path="res://models/map_assets/hill_desert_003.tscn" id="2_telu3"]
-[ext_resource type="PackedScene" uid="uid://8ro3adc3kgnh" path="res://models/map_assets/hill_desert_001.tscn" id="4_y40ln"]
-[ext_resource type="PackedScene" uid="uid://cj67ompona2hp" path="res://models/map_assets/hill_desert_005.tscn" id="5_pusul"]
-[ext_resource type="PackedScene" uid="uid://guo61ibv6a17" path="res://models/map_assets/plateau_desert_004.tscn" id="8_pusul"]
-[ext_resource type="PackedScene" uid="uid://msbfqcn7f1fu" path="res://models/map_assets/mountain_desert_002.tscn" id="8_y40ln"]
-[ext_resource type="PackedScene" uid="uid://2jnbtqhrt1ic" path="res://models/map_assets/plateau_desert_002.tscn" id="9_pusul"]
-[ext_resource type="PackedScene" uid="uid://b33856itkepv8" path="res://models/map_assets/plateau_desert_001.tscn" id="9_y40ln"]
-[ext_resource type="PackedScene" uid="uid://dpqrh41s6ti83" path="res://models/map_assets/mountain_desert_007.tscn" id="10_pusul"]
+[ext_resource type="PackedScene" uid="uid://dr5fy6ihnj7xc" path="res://models/map_assets/hills/hill_desert_003.tscn" id="2_telu3"]
+[ext_resource type="PackedScene" uid="uid://8ro3adc3kgnh" path="res://models/map_assets/hills/hill_desert_001.tscn" id="4_y40ln"]
+[ext_resource type="PackedScene" uid="uid://cj67ompona2hp" path="res://models/map_assets/hills/hill_desert_005.tscn" id="5_pusul"]
+[ext_resource type="PackedScene" uid="uid://guo61ibv6a17" path="res://models/map_assets/hills/plateau_desert_004.tscn" id="8_pusul"]
+[ext_resource type="PackedScene" uid="uid://msbfqcn7f1fu" path="res://models/map_assets/hills/mountain_desert_002.tscn" id="8_y40ln"]
+[ext_resource type="PackedScene" uid="uid://2jnbtqhrt1ic" path="res://models/map_assets/hills/plateau_desert_002.tscn" id="9_pusul"]
+[ext_resource type="PackedScene" uid="uid://b33856itkepv8" path="res://models/map_assets/hills/plateau_desert_001.tscn" id="9_y40ln"]
+[ext_resource type="PackedScene" uid="uid://dpqrh41s6ti83" path="res://models/map_assets/hills/mountain_desert_007.tscn" id="10_pusul"]
+[ext_resource type="Script" uid="uid://bi6holh8iwtqx" path="res://levels/WaveManager.gd" id="11_cne4x"]
+[ext_resource type="PackedScene" uid="uid://cgpxb7uacsoo6" path="res://entities/enemy_coyote.tscn" id="12_1rl7q"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_f23x1"]
+vertices = PackedVector3Array(40.25, 2.25, 41.31888, 40.25, 2.5, 40.56888, 40, 2.25, 41.06888, 34, 0.5, 43.56888, 34, 0.75, 43.06888, 33.25, 0.5, 43.06888, 45.5, 0.5, 33.06888, 45.5, 0.75, 33.81888, 46, 0.5, 33.81888, 35, 2, 41.81888, 34.25, 1.5, 41.81888, 34.25, 1.25, 42.56888, 35, 1.75, 42.56888, 74.5, 0.5, 37.06888, 37.25, 2.25, 42.31888, 38.25, 2.25, 42.56888, 38.5, 2.25, 42.06888, 33, 1, 42.06888, 32.25, 0.5, 42.06888, 35, 2, 38.06888, 34.75, 2.25, 39.56888, 35.25, 2.25, 39.56888, 35.5, 2.25, 38.06888, 43.75, 0.5, 31.818878, 74.5, 0.5, -74.68112, 38.5, 2.25, 41.31888, 39.25, 2.25, 42.06888, 38, 0.5, 33.06888, 39.5, 0.75, 32.56888, 39.5, 0.5, 32.06888, 39.75, 1.25, 43.31888, 41, 1.5, 41.56888, 35.25, 0.5, 35.81888, 36.75, 0.5, 34.31888, 38, 0.5, 74.31888, -74.5, 0.5, 74.31888, 37.5, 2.25, 40.56888, 33.75, 0.5, 37.31888, 35.5, 2.25, 40.81888, 38, 1.25, 45.06888, 39.5, 1.5, 43.31888, 37.25, 1.75, 43.31888, 36.75, 1.25, 45.06888, 40.75, 0.5, 31.318878, 37, 1.75, 36.81888, 36.25, 1.75, 36.81888, 36.5, 2.25, 39.06888, 36.75, 2.25, 37.94388, -74.5, 0.5, -74.68112, 32.25, 0.5, 40.06888, 34.5, 0.75, 37.06888, 36.5, 0.75, 35.56888, 36.125, 2.25, 42.44388, 46.5, 0.75, 35.56888, 47.25, 0.5, 35.81888, 35, 1, 43.56888, 36.125, 1.5, 43.44388, 36.75, 0.5, 46.06888, 47.5, 0.5, 37.06888, 38, 0.5, 46.31888, 45.5, 2, 37.31888, 46.25, 1.5, 37.06888, 45.75, 1.75, 36.56888, 45, 2, 36.56888, 39.75, 2.25, 34.81888, 39.75, 2.25, 35.56888, 40.25, 2.25, 35.56888, 46, 1.25, 35.56888, 45.5, 1.5, 35.31888, 45, 1.5, 35.31888, 43.75, 2.5, 36.06888, 43.75, 2.25, 35.31888, 43, 1.5, 33.31888, 41.75, 1.25, 32.31888, 40.5, 1.25, 32.81888, 40.5, 2.25, 34.56888, 42, 2.25, 37.56888, 41.75, 2.25, 39.06888, 42.5, 2.25, 39.06888, 42.75, 2.25, 39.56888, 44, 2, 39.56888, 37.25, 1.5, 35.81888, 37.5, 1.75, 36.56888, 38.75, 1.75, 34.81888, 39, 1.75, 34.06888, 45.25, 2, 38.81888, 44.75, 1.5, 35.06888, 44.25, 1.25, 33.06888, 36.25, 0.5, 38.56888, 35.75, 0.5, 39.06888, 35.75, 0.5, 40.06888, 37.25, 0.5, 39.81888, 37.5, 0.5, 38.81888, 40.25, 0.5, 36.56888, 39, 0.5, 36.81888, 41, 0.5, 39.06888, 37.75, 0.5, 40.31888, 37.75, 0.5, 41.56888, 38.5, 0.5, 41.81888, 43, 0.5, 35.56888, 40.5, 0.5, 35.06888, 43.25, 0.5, 38.81888, 44.25, 0.5, 38.06888, 41.5, 0.5, 42.81888, 40, 0.75, 44.06888, 40, 0.5, 44.81888, 45.75, 0.5, 40.31888, 74.5, 0.5, 74.31888, 39, 0.5, 46.06888, 47.25, 0.5, 38.56888, 33.25, 1.25, 41.06888, 33.25, 1.25, 41.56888, 34, 1.5, 41.56888, 34.25, 1.5, 40.56888, 34, 1.25, 39.81888)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(12, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(13, 8, 6), PackedInt32Array(16, 15, 14), PackedInt32Array(5, 18, 17), PackedInt32Array(22, 21, 19), PackedInt32Array(19, 21, 20), PackedInt32Array(6, 23, 13), PackedInt32Array(13, 23, 24), PackedInt32Array(0, 26, 2), PackedInt32Array(2, 26, 25), PackedInt32Array(29, 28, 27), PackedInt32Array(0, 31, 26), PackedInt32Array(26, 31, 30), PackedInt32Array(24, 33, 32), PackedInt32Array(5, 34, 18), PackedInt32Array(18, 34, 35), PackedInt32Array(25, 26, 16), PackedInt32Array(16, 14, 25), PackedInt32Array(25, 14, 36), PackedInt32Array(32, 37, 35), PackedInt32Array(12, 9, 38), PackedInt32Array(42, 41, 39), PackedInt32Array(39, 41, 40), PackedInt32Array(24, 23, 43), PackedInt32Array(44, 47, 45), PackedInt32Array(45, 47, 22), PackedInt32Array(22, 47, 46), PackedInt32Array(35, 48, 32), PackedInt32Array(32, 48, 24), PackedInt32Array(22, 46, 21), PackedInt32Array(21, 46, 38), PackedInt32Array(38, 46, 36), PackedInt32Array(49, 18, 35), PackedInt32Array(32, 50, 37), PackedInt32Array(51, 32, 33), PackedInt32Array(12, 38, 52), PackedInt32Array(52, 38, 14), PackedInt32Array(14, 38, 36), PackedInt32Array(24, 43, 29), PackedInt32Array(53, 8, 54), PackedInt32Array(54, 8, 13), PackedInt32Array(55, 12, 56), PackedInt32Array(56, 12, 52), PackedInt32Array(56, 52, 41), PackedInt32Array(41, 52, 14), PackedInt32Array(37, 49, 35), PackedInt32Array(41, 42, 56), PackedInt32Array(56, 42, 55), PackedInt32Array(42, 57, 55), PackedInt32Array(55, 57, 3), PackedInt32Array(24, 27, 33), PackedInt32Array(3, 57, 5), PackedInt32Array(5, 57, 34), PackedInt32Array(13, 58, 54), PackedInt32Array(34, 57, 59), PackedInt32Array(27, 24, 29), PackedInt32Array(61, 60, 62), PackedInt32Array(62, 60, 63), PackedInt32Array(66, 65, 64), PackedInt32Array(68, 67, 69), PackedInt32Array(62, 63, 67), PackedInt32Array(67, 63, 69), PackedInt32Array(72, 71, 70), PackedInt32Array(73, 72, 74), PackedInt32Array(74, 72, 75), PackedInt32Array(78, 77, 76), PackedInt32Array(79, 78, 80), PackedInt32Array(80, 78, 76), PackedInt32Array(82, 81, 83), PackedInt32Array(83, 81, 84), PackedInt32Array(64, 75, 66), PackedInt32Array(66, 75, 76), PackedInt32Array(83, 84, 64), PackedInt32Array(64, 84, 75), PackedInt32Array(72, 70, 75), PackedInt32Array(75, 70, 76), PackedInt32Array(60, 85, 80), PackedInt32Array(70, 63, 60), PackedInt32Array(86, 71, 87), PackedInt32Array(87, 71, 72), PackedInt32Array(70, 60, 76), PackedInt32Array(76, 60, 80), PackedInt32Array(90, 89, 88), PackedInt32Array(92, 91, 88), PackedInt32Array(88, 91, 90), PackedInt32Array(95, 94, 93), PackedInt32Array(92, 96, 91), PackedInt32Array(98, 97, 96), PackedInt32Array(93, 100, 99), PackedInt32Array(92, 98, 96), PackedInt32Array(99, 102, 101), PackedInt32Array(94, 95, 92), PackedInt32Array(92, 95, 98), PackedInt32Array(95, 93, 101), PackedInt32Array(101, 93, 99), PackedInt32Array(104, 103, 105), PackedInt32Array(105, 103, 106), PackedInt32Array(13, 107, 106), PackedInt32Array(106, 107, 34), PackedInt32Array(105, 106, 108), PackedInt32Array(108, 106, 34), PackedInt32Array(109, 58, 13), PackedInt32Array(34, 59, 108), PackedInt32Array(106, 109, 13), PackedInt32Array(112, 111, 110), PackedInt32Array(112, 110, 113), PackedInt32Array(113, 110, 114)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
 size = Vector3(150, 1, 150)
@@ -26,54 +32,83 @@ albedo_texture = ExtResource("1_yylme")
 
 [node name="MainWorld" type="Node3D" unique_id=2004458005]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=617005654]
+[node name="Navegation" type="NavigationRegion3D" parent="." unique_id=1725743943]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.18112373)
+navigation_mesh = SubResource("NavigationMesh_f23x1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=660460701]
+[node name="StaticBody3D" type="StaticBody3D" parent="Navegation" unique_id=617005654 groups=["World"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.18112373)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Navegation/StaticBody3D" unique_id=660460701]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_yf5fn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=248340091]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Navegation/StaticBody3D" unique_id=248340091]
 material_override = SubResource("StandardMaterial3D_d0u6y")
 mesh = SubResource("QuadMesh_57qmd")
 surface_material_override/0 = SubResource("StandardMaterial3D_tsf8b")
 
+[node name="Assets" type="Node3D" parent="Navegation/StaticBody3D" unique_id=784856957 groups=["World"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.18112373)
+
+[node name="Plateau_desert_003" parent="Navegation/StaticBody3D/Assets" unique_id=709097477 groups=["World"] instance=ExtResource("9_y40ln")]
+transform = Transform3D(0.19518386, 0, 0.2338586, 0, 0.31622383, 0, -0.20755683, 0, 0.23128682, 39.563343, -5.7980615e-06, 38.85211)
+
+[node name="Hills" type="Node3D" parent="." unique_id=922735608 groups=["World"]]
+
+[node name="E_HILL" parent="Hills" unique_id=1282031428 instance=ExtResource("2_telu3")]
+transform = Transform3D(1.8660774, 0, 0, 0, 2.6624317, 0, 0, 0, 2.6431205, -13.818166, 0, -84.44829)
+
+[node name="N_HILL" parent="Hills" unique_id=1366626350 instance=ExtResource("2_telu3")]
+transform = Transform3D(0.04086217, 0, 2.9170883, 0, 3.6333323, 0, -1.9365906, 0, 0.06473277, -80.62051, -0.23393816, 0.18519914)
+
+[node name="NE_HILL" parent="Hills" unique_id=1869225216 instance=ExtResource("4_y40ln")]
+transform = Transform3D(2.7892842, 0, 0, 0, 5.123983, 0, 0, 0, 2.9435587, -76.671715, -0.7083919, -79.79963)
+
+[node name="Hill_desert_007" parent="Hills" unique_id=44844845 instance=ExtResource("5_pusul")]
+transform = Transform3D(2.1263273, 0, -2.3142395, 0, 4.089598, 0, 2.3939257, 0, 2.1618154, 66.56634, 0.28185824, -66.955505)
+
+[node name="W_HILL" parent="Hills" unique_id=917237322 instance=ExtResource("2_telu3")]
+transform = Transform3D(-2.8551602, 0, 0.162236, 0, 3.8889234, 0, -0.104405664, 0, -3.0192904, 41.336117, -0.555117, 88.56499)
+
+[node name="S_HILL" parent="Hills" unique_id=1004103278 instance=ExtResource("2_telu3")]
+transform = Transform3D(0.043206792, 0, -2.3519657, 0, 3.8425376, 0, 2.9223678, 0, 0.16763532, 83.09479, -1.3042747, 15.340634)
+
+[node name="NO_HILL" parent="Hills" unique_id=1531808354 instance=ExtResource("8_y40ln")]
+transform = Transform3D(-2.7564752, 0, 1.8080338, 0, 3.220052, 0, -2.385442, 0, -2.1972666, -60.8857, 0.12447317, 68.04573)
+
+[node name="Plateau_desert_005" parent="Hills" unique_id=1858196227 instance=ExtResource("8_pusul")]
+transform = Transform3D(3.1723318, 0, 0, 0, 3.8374295, 0, 0, 0, 3.9688928, -2.2966163, 1.1873932e-06, 142.27907)
+
+[node name="Plateau_desert_004" parent="Hills" unique_id=944205644 instance=ExtResource("9_pusul")]
+transform = Transform3D(-0.15597475, 0, 4.288205, 0, 5.1137986, 0, -4.5373, 0, -0.15503268, 139.33603, 1.3293867, 18.170765)
+
+[node name="Mountain_desert_008" parent="Hills" unique_id=1112613452 instance=ExtResource("10_pusul")]
+transform = Transform3D(4.8448434, 0, 0, 0, 4.3764443, 0, 0, 0, 2.8690782, 55.51686, -6.0505986e-06, -128.0965)
+
 [node name="Player" parent="." unique_id=1757769257 instance=ExtResource("1_72rvm")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=702423428]
-transform = Transform3D(1, 0, 0, 0, -0.034193587, 0.99941534, 0, -0.99941534, -0.034193587, 0, 15, 0)
+transform = Transform3D(0.99932593, 0.0012552936, -0.036689907, 0.03671137, -0.034170534, 0.99874157, 0, -0.9994152, -0.034193587, 0, 15, 0)
+light_energy = 2.6
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=574060560]
-transform = Transform3D(1.8660774, 0, 0, 0, 1.8268623, 0, 0, 0, 1.9137056, 0, 0, 1.0922718)
+[node name="Enemies" type="Node3D" parent="." unique_id=1868722663]
 
-[node name="E_HILL" parent="StaticBody3D2" unique_id=1282031428 instance=ExtResource("2_telu3")]
-transform = Transform3D(1, 0, 0, 0, 1.4573795, 0, 0, 0, 1.3811531, -7.4049263, 0, -44.698914)
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=950969864]
 
-[node name="N_HILL" parent="StaticBody3D2" unique_id=1366626350 instance=ExtResource("2_telu3")]
-transform = Transform3D(0.02189736, 0, 1.5632193, 0, 1.9888375, 0, -1.0119585, 0, 0.033825874, -43.203194, -0.12805462, -0.47398758)
+[node name="Marker01" type="Marker3D" parent="SpawnPoints" unique_id=1860945001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.534966, 1.5854113, -53.97162)
 
-[node name="NE_HILL" parent="StaticBody3D2" unique_id=1869225216 instance=ExtResource("4_y40ln")]
-transform = Transform3D(1.4947313, 0, 0, 0, 2.8047996, 0, 0, 0, 1.538146, -41.0871, -0.38776425, -42.26977)
+[node name="Marker02" type="Marker3D" parent="SpawnPoints" unique_id=833654069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.778013, 1.5870023, 54.73594)
 
-[node name="Hill_desert_007" parent="StaticBody3D2" unique_id=44844845 instance=ExtResource("5_pusul")]
-transform = Transform3D(1.1394635, 0, -1.2401626, 0, 2.2385914, 0, 1.2509372, 0, 1.1296489, 35.6718, 0.15428543, -35.55812)
+[node name="Marker03" type="Marker3D" parent="SpawnPoints" unique_id=479535103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.14073, 1.776402, -39.08944)
 
-[node name="W_HILL" parent="StaticBody3D2" unique_id=917237322 instance=ExtResource("2_telu3")]
-transform = Transform3D(-1.5300331, 0, 0.08693959, 0, 2.1287446, 0, -0.054556806, 0, -1.5777194, 22.15134, -0.3038636, 45.708553)
+[node name="WaveManager" type="Node" parent="." unique_id=1444209382 node_paths=PackedStringArray("spawn_points", "enemies_container")]
+script = ExtResource("11_cne4x")
+enemy_scenes = Array[PackedScene]([ExtResource("12_1rl7q")])
+spawn_points = [NodePath("../SpawnPoints/Marker01"), NodePath("../SpawnPoints/Marker02"), NodePath("../SpawnPoints/Marker03")]
+enemies_container = NodePath("../Enemies")
 
-[node name="S_HILL" parent="StaticBody3D2" unique_id=1004103278 instance=ExtResource("2_telu3")]
-transform = Transform3D(0.023153804, 0, -1.2603794, 0, 2.1033537, 0, 1.5270728, 0, 0.087597236, 44.52912, -0.7139425, 7.4454308)
-
-[node name="NO_HILL" parent="StaticBody3D2" unique_id=1531808354 instance=ExtResource("8_y40ln")]
-transform = Transform3D(-1.4771495, 0, 0.9688954, 0, 1.7626134, 0, -1.2465042, 0, -1.1481738, -32.62764, 0.06813495, 34.98629)
-
-[node name="Plateau_desert_005" parent="StaticBody3D2" unique_id=1858196227 instance=ExtResource("8_pusul")]
-transform = Transform3D(1.7, 0, 0, 0, 2.1005576, 0, 0, 0, 2.0739307, -1.2307186, 6.4996317e-07, 73.77666)
-
-[node name="Plateau_desert_003" parent="StaticBody3D2" unique_id=709097477 instance=ExtResource("9_y40ln")]
-transform = Transform3D(0.13136229, 0, -0.085281655, 0, 0.17309669, 0, 0.07380641, 0, 0.15178625, 21.201342, -3.1737814e-06, -26.6176)
-
-[node name="Plateau_desert_004" parent="StaticBody3D2" unique_id=944205644 instance=ExtResource("9_pusul")]
-transform = Transform3D(-0.083584286, 0, 2.2979782, 0, 2.7992249, 0, -2.37095, 0, -0.08101177, 74.66787, 0.7276885, 8.924305)
-
-[node name="Mountain_desert_008" parent="StaticBody3D2" unique_id=1112613452 instance=ExtResource("10_pusul")]
-transform = Transform3D(2.5962713, 0, 0, 0, 2.395607, 0, 0, 0, 1.4992266, 29.750566, -3.3120168e-06, -67.507126)
+[node name="SpawnTimer" type="Timer" parent="WaveManager" unique_id=1628452516]
