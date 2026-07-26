@@ -18,6 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://bkyfx7ejaicur" path="res://scenes/pause_menu.tscn" id="15_a8ls1"]
 [ext_resource type="PackedScene" uid="uid://b6lg3ivxc20ck" path="res://scenes/death_screen.tscn" id="16_qfm1y"]
 [ext_resource type="Script" uid="uid://5jheb1whejys" path="res://scripts/tutorial/cat_dialogue.gd" id="18_fulsm"]
+[ext_resource type="Texture2D" uid="uid://c06om2tdqgv4m" path="res://png/cat/GATO BRAVO.png" id="19_i4ail"]
+[ext_resource type="Texture2D" uid="uid://xgslpv8jigdt" path="res://png/cat/GATO BOCA FECHADA.png" id="20_a38lo"]
+[ext_resource type="Texture2D" uid="uid://62samw1lchiu" path="res://png/cat/GATO BOCA ABERTA.png" id="21_4ni07"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 
@@ -171,6 +174,52 @@ animations = [{
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
 albedo_color = Color(1, 1, 0.23529412, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l71n6"]
+atlas = ExtResource("19_i4ail")
+region = Rect2(0, 0, 419, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke2ow"]
+atlas = ExtResource("20_a38lo")
+region = Rect2(0, 0, 420, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
+atlas = ExtResource("20_a38lo")
+region = Rect2(0, 0, 420, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
+atlas = ExtResource("21_4ni07")
+region = Rect2(0, 0, 419, 290)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_57qmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l71n6")
+}],
+"loop": 1,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke2ow")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujl30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31cv2")
+}],
+"loop": 1,
+"name": &"talkiing",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody3D" unique_id=1757769257 groups=["Player"]]
 script = ExtResource("1_dqkch")
@@ -363,36 +412,95 @@ process_mode = 3
 [node name="DeathScreen" parent="DeathCanvas" unique_id=2059064050 instance=ExtResource("16_qfm1y")]
 
 [node name="CatCanvas" type="CanvasLayer" parent="." unique_id=1563736969]
+layer = 20
 
 [node name="CatDialogue" type="Control" parent="CatCanvas" unique_id=2147340099]
 process_mode = 3
-visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("18_fulsm")
 
 [node name="Background" type="ColorRect" parent="CatCanvas/CatDialogue" unique_id=1080630897]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.012617188, 0.012617188, 0.012617188, 0.6666667)
 
 [node name="CatSprite" type="TextureRect" parent="CatCanvas/CatDialogue" unique_id=1015896890]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="DialogueLabel" type="Label" parent="CatCanvas/CatDialogue" unique_id=1874524669]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="DialogueBox" type="Panel" parent="CatCanvas/CatDialogue" unique_id=1272804441]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -199.0
+offset_right = -40.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
 
-[node name="ContinueLabel" type="Label" parent="CatCanvas/CatDialogue" unique_id=728501034]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="DialogueLabel" type="Label" parent="CatCanvas/CatDialogue/DialogueBox" unique_id=1874524669]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueLabel" type="Label" parent="CatCanvas/CatDialogue/DialogueBox" unique_id=728501034]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -40.0
+offset_right = -20.999268
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "PRESS ENTER"
+
+[node name="CatAnchor" type="Control" parent="CatCanvas/CatDialogue/DialogueBox" unique_id=824936200]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CatCanvas/CatDialogue/DialogueBox/CatAnchor" unique_id=1213049358]
+position = Vector2(50, 0)
+scale = Vector2(0.58, 0.58)
+sprite_frames = SubResource("SpriteFrames_57qmd")
+animation = &"talkiing"
+autoplay = "talkiing"
 
 [connection signal="animation_finished" from="Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/Weapon" to="." method="_on_weapon_animation_finished"]
 [connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]

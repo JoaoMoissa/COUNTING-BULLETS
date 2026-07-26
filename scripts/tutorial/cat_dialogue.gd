@@ -2,8 +2,8 @@ extends Control
 
 signal dialogue_finished
 
-@onready var dialogue_label: Label = $DialogueLabel
-@onready var continue_label: Label = $ContinueLabel
+@onready var dialogue_label: Label = $DialogueBox/DialogueLabel
+@onready var continue_label: Label = $DialogueBox/ContinueLabel
 
 var dialogue_lines: Array = []
 var current_line: int = 0
@@ -11,6 +11,7 @@ var is_open: bool = false
 
 
 func _ready() -> void:
+	add_to_group("CatDialogue")
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	hide()
 
@@ -30,6 +31,11 @@ func start_dialogue(lines: Array) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_open:
+		return
+
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().paused = true
+		get_viewport().set_input_as_handled()
 		return
 
 	if event.is_action_pressed("ui_accept"):

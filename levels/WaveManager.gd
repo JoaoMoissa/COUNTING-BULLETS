@@ -5,7 +5,6 @@ extends Node
 	get_parent().get_node("SpawnPoints").get_children()     # All Markers
 @export var enemies_container: Node3D               # Enemies Node
 
-# --- ajustes de dificuldade ---
 @export var base_count: int = 5          # First Wave
 @export var count_growth: int = 2        # +N enemies per wave
 @export var max_concurrent: int = 6      # Max enemies on screen
@@ -23,7 +22,6 @@ signal wave_changed(wave)
 func _ready() -> void:
 	spawn_timer.wait_time = spawn_interval
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
-	_start_next_wave()
 
 func _start_next_wave() -> void:
 	current_wave += 1
@@ -33,22 +31,21 @@ func _start_next_wave() -> void:
 	spawn_timer.start()
 
 func _on_spawn_timer_timeout() -> void:
-	# só nasce se ainda há o que spawnar E há espaço na tela
 	if to_spawn > 0 and alive < max_concurrent:
 		_spawn_one()
 
 func _spawn_one() -> void:
 	var enemy = enemy_scenes.pick_random().instantiate()
-	enemies_container.add_child(enemy)                       # add ANTES de posicionar
+	enemies_container.add_child(enemy)
 	enemy.global_position = spawn_points.pick_random().global_position
-	enemy.tree_exited.connect(_on_enemy_died)               # avisa quando morrer
+	enemy.tree_exited.connect(_on_enemy_died)
 	to_spawn -= 1
 	alive += 1
 	if to_spawn == 0:
-		spawn_timer.stop()                                  # já nasceram todos
+		spawn_timer.stop()
 
 func _on_enemy_died() -> void:
-	if not is_inside_tree(): 
+	if not is_inside_tree():
 		return
 	alive -= 1
 	if to_spawn == 0 and alive == 0:
@@ -58,6 +55,24 @@ func _end_wave() -> void:
 	if not is_inside_tree():
 		return
 	await get_tree().create_timer(wave_delay).timeout
-	if not is_inside_tree():    # cena pode ter mudado durante a espera
+	if not is_inside_tree():
 		return
+	_start_next_wave()
+
+func start_tutorial_enemy() -> void:
+	current_wave = 1
+	to_spawn = 1
+	alive = 0
+
+	wave_changed.emit(current_wave)
+	MissionManager.set_current_wave(current_wave)
+
+	_spawn_one()
+
+func start_tutorial_combat() -> void:
+	to_spawn = 5
+	spawn_timer.start()
+
+func start_wave_two() -> void:
+	current_wave = 1
 	_start_next_wave()
