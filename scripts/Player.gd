@@ -7,6 +7,12 @@ const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
 
+#weapon animation variable
+var last_muzzle_flash_frame: int = -1
+var weapon_pivot_start_position: Vector2
+var weapon_bob_time := 0.0
+var reload_tween: Tween
+
 #bob variables
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
@@ -38,7 +44,16 @@ var can_reload = false
 @onready var score_label: Label = $Head/Recoil/Camera3D/CanvasLayer/ScoreLabel #ScoreLabel to show score
 @onready var recoil = $Head/Recoil #recoil
 @onready var death_screen: Control = get_tree().current_scene.get_node("DeathCanvas/DeathScreen")
-@onready var gun_sprite: AnimatedSprite2D = $Head/Recoil/Camera3D/CanvasLayer/Weapon
+#weapon animation
+@onready var gun_sprite: AnimatedSprite2D = $Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/Weapon
+@onready var muzzle_flash: AnimatedSprite2D = $Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/MuzzleFlash
+@onready var weapon_pivot: Node2D = $Head/Recoil/Camera3D/CanvasLayer/WeaponPivot
+@onready var weapon_animation_player: AnimationPlayer = \
+	$Head/Recoil/Camera3D/CanvasLayer/AnimationPlayer
+@onready var reload_visual: Node2D = \
+	$Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/ReloadVisual
+@onready var reload_cylinder: Sprite2D = \
+	$Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/ReloadVisual/Cylinder
 
 func _update_ammo_ui():
 	ammo_label.text = str(ammo_in_mag)
@@ -53,7 +68,10 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	health_component.health_changed.connect(_on_health_changed)
 	healthbar.init_health(health_component.health)
+	weapon_pivot_start_position = weapon_pivot.position
 	reload_label.visible = false
+	reload_visual.hide()
+	muzzle_flash.hide()
 	_update_ammo_ui()
 	
 	# Update score
@@ -92,7 +110,13 @@ func _handle_shoot() -> void:
 	ammo_in_mag -= 1
 	_update_ammo_ui()
 	gun_sprite.play("shoot")
+	_show_random_muzzle_flash()
+	
+	weapon_animation_player.stop()
+	weapon_animation_player.play("weapon_recoil")
+
 	recoil.add_recoil()
+	
 
 
 	#aim in middle.
@@ -131,7 +155,89 @@ func _handle_shoot() -> void:
 		can_reload = false
 		reload_cooldown.start()
 
-# revolver animation
+#revolver animations
+
+func _finish_reload_animation() -> void:
+	if reload_tween != null:
+		reload_tween.kill()
+		reload_tween = null
+
+	reload_cylinder.rotation = 0.0
+	reload_visual.hide()
+
+	gun_sprite.show()
+	gun_sprite.play("idle")
+
+func _start_reload_animation() -> void:
+	gun_sprite.hide()
+	muzzle_flash.hide()
+	reload_visual.show()
+
+	if reload_tween != null:
+		reload_tween.kill()
+		reload_tween = null
+	
+	reload_cylinder.rotation = 0.0
+	
+	reload_tween = create_tween()
+	reload_tween.set_loops()
+
+	reload_tween.tween_interval(0.25)
+	
+	reload_tween.tween_property(reload_cylinder, "rotation", -TAU, 0.35)
+
+# weapon bob
+func _update_weapon_bob(delta: float) -> void:
+	var horizontal_speed: float = Vector2(velocity.x, velocity.z).length()
+
+	if horizontal_speed > 0.1 and is_on_floor():
+		var speed_ratio: float = inverse_lerp(WALK_SPEED, SPRINT_SPEED, horizontal_speed)
+
+		speed_ratio = clamp(speed_ratio, 0.0, 1.0)
+
+		var bob_frequency: float = lerp(5.0, 8.0, speed_ratio)
+		var bob_horizontal_amount: float = lerp(3.0, 8.0, speed_ratio)
+		var bob_vertical_amount: float = lerp(7.0, 10.0, speed_ratio)
+
+		weapon_bob_time += delta * bob_frequency
+
+		var bob_x: float = cos(weapon_bob_time) * bob_horizontal_amount
+		var bob_y: float = absf(sin(weapon_bob_time)) * bob_vertical_amount
+
+		var target_position: Vector2 = (
+			weapon_pivot_start_position
+			+ Vector2(bob_x, bob_y)
+		)
+
+		weapon_pivot.position = weapon_pivot.position.lerp(
+			target_position,
+			min(delta * 12.0, 1.0)
+		)
+	else:
+		weapon_bob_time = 0.0
+
+		weapon_pivot.position = weapon_pivot.position.lerp(
+			weapon_pivot_start_position,
+			min(delta * 8.0, 1.0)
+		)
+
+
+# weapon muzzle
+func _show_random_muzzle_flash() -> void:
+	var available_frames: Array[int] = [0, 1, 2, 3]
+
+	var selected_frame: int = available_frames.pick_random()
+
+	muzzle_flash.animation = "flash"
+	muzzle_flash.frame = selected_frame
+	muzzle_flash.show()
+
+	await get_tree().create_timer(0.06).timeout
+
+	muzzle_flash.hide()
+	
+
+# weapon shoot animation
 func _on_weapon_animation_finished() -> void:
 	if gun_sprite.animation == "shoot":
 		gun_sprite.play("idle")
@@ -152,7 +258,9 @@ func _reload():
 	
 	# Time is up
 	is_reloading = true
+	_start_reload_animation()
 	await get_tree().create_timer(RELOAD_TIMER).timeout
+	_finish_reload_animation()
 	ammo_in_mag = MAG_SIZE
 	_update_ammo_ui()
 	is_reloading = false
@@ -199,6 +307,8 @@ func _physics_process(delta: float) -> void:
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
+	# weapon bob
+	_update_weapon_bob(delta)
 	
 	# Gun
 	_handle_shoot()
