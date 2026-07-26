@@ -318,17 +318,6 @@ visible = false
 mesh = SubResource("CapsuleMesh_yf5fn")
 surface_material_override/0 = SubResource("StandardMaterial3D_57qmd")
 
-<<<<<<< HEAD
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2110496977]
-process_mode = 3
-
-[node name="PauseMenu" parent="CanvasLayer" unique_id=488864533 instance=ExtResource("9_y4r1p")]
-
-[node name="DeathCanvas" type="CanvasLayer" parent="." unique_id=125448542]
-
-[node name="DeathScreen" parent="DeathCanvas" unique_id=2059064050 instance=ExtResource("10_d2wvv")]
-
-=======
 [node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=935672056]
 process_mode = 3
 
@@ -339,5 +328,4 @@ process_mode = 3
 [node name="DeathScreen" parent="DeathCanvas" unique_id=2059064050 instance=ExtResource("16_qfm1y")]
 
 [connection signal="animation_finished" from="Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/Weapon" to="." method="_on_weapon_animation_finished"]
->>>>>>> 7933cc8466e3f466a06f7be4eb52f2401bd38f63
 [connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]
