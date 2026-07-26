@@ -85,7 +85,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tsf8b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.18112373)
 
 [node name="Plateau_desert_003" parent="Navegation/StaticBody3D/Assets" unique_id=709097477 groups=["World"] instance=ExtResource("9_y40ln")]
-transform = Transform3D(0.2123803, 0, 0.2204239, 0, 0.3100171, 0, -0.2258434, 0, 0.2179998, 39.56334, -1.056823, 38.85211)
+transform = Transform3D(0.20074518, 0, 0.20834813, 0, 0.29303303, 0, -0.21347071, 0, 0.20605682, 39.56334, -1.9911863, 38.85211)
 
 [node name="Trees" type="Node3D" parent="Navegation/StaticBody3D/Assets" unique_id=1615812465]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010647774, -0.0048886538, -0.18801141)
