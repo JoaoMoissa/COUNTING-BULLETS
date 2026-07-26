@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://ch1jnntxyu5uw"]
+
+[ext_resource type="Script" uid="uid://46vug5ws217u" path="res://scenes/UI/controlMissionUI.gd" id="1_ugld5"]
+
+[node name="MissionBoard" type="Control" unique_id=455243979]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=891496185]
+process_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1730426927 groups=["MissionUI"]]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ugld5")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=371984067]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 78.0
+offset_right = 970.0
+offset_bottom = 541.0
+
+[node name="Option1" type="Button" parent="CanvasLayer/Control/Panel" unique_id=124287283]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 404.0
+offset_right = 247.0
+offset_bottom = 432.0
+
+[node name="Option2" type="Button" parent="CanvasLayer/Control/Panel" unique_id=1668530351]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 402.0
+offset_right = 502.0
+offset_bottom = 430.0
+
+[node name="Option3" type="Button" parent="CanvasLayer/Control/Panel" unique_id=1396955998]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 403.0
+offset_right = 758.0
+offset_bottom = 431.0

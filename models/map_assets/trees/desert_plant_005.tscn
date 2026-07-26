@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dc0giyhm1xh2j"]
+
+[ext_resource type="PackedScene" uid="uid://e2ts0iwm73ow" path="res://models/Fbx/Desert_plant_005.fbx" id="1_df0ip"]
+[ext_resource type="Texture2D" uid="uid://bfggoqep7f5mt" path="res://png/T_Mountains_desert.png" id="2_xtlg5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7stp"]
+albedo_texture = ExtResource("2_xtlg5")
+
+[node name="Desert_plant_005" unique_id=1831165009 instance=ExtResource("1_df0ip")]
+
+[node name="Desert_plant_005" parent="." index="0" unique_id=1928545076]
+material_override = SubResource("StandardMaterial3D_g7stp")

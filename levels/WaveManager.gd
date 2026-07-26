@@ -7,7 +7,7 @@ extends Node
 # --- ajustes de dificuldade ---
 @export var base_count: int = 5          # First Wave
 @export var count_growth: int = 2        # +N enemies per wave
-@export var max_concurrent: int = 6      # Max ecemies on screen
+@export var max_concurrent: int = 6      # Max enemies on screen
 @export var spawn_interval: float = 1.0  # (trickle)
 @export var wave_delay: float = 3.0      # time between waves
 
@@ -28,6 +28,7 @@ func _start_next_wave() -> void:
 	current_wave += 1
 	to_spawn = base_count + (current_wave - 1) * count_growth
 	wave_changed.emit(current_wave)
+	MissionManager.set_current_wave(current_wave)  # keep mission logic in sync
 	spawn_timer.start()
 
 func _on_spawn_timer_timeout() -> void:

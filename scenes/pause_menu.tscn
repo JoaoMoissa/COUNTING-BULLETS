@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dibqhighj4usl" path="res://png/Menu/YesWhite.png" id="11_3o3g3"]
 [ext_resource type="Texture2D" uid="uid://bslj61qkykvt0" path="res://png/Menu/NoRed.png" id="12_h5b1d"]
 [ext_resource type="Texture2D" uid="uid://cfmeui02op6k2" path="res://png/Menu/NoWhite.png" id="13_avs0h"]
-[ext_resource type="PackedScene" uid="uid://csvu37vq0y5fl" path="res://scenes/options_menu.tscn" id="14_4hnlu"]
+[ext_resource type="PackedScene" uid="uid://csvu37vq0y5fl" path="res://scenes/UI/options_menu.tscn" id="14_3o3g3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
 shader = ExtResource("2_kukqi")
@@ -225,7 +225,6 @@ stretch_mode = 5
 libraries/ = SubResource("AnimationLibrary_v4r4p")
 
 [node name="QuitPopUp" type="CenterContainer" parent="." unique_id=758024448]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -274,7 +273,7 @@ texture_hover = ExtResource("13_avs0h")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="OptionsMenu" parent="." unique_id=1166744163 instance=ExtResource("14_4hnlu")]
+[node name="OptionsMenu" parent="." unique_id=1166744163 instance=ExtResource("14_3o3g3")]
 visible = false
 layout_mode = 1
 
