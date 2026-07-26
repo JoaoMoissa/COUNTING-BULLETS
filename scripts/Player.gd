@@ -1,12 +1,11 @@
 extends CharacterBody3D
 
-
+var is_dead: bool = false
 var can_take_damage: bool = true
 var speed
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
-const SENSITIVITY = 0.003
 
 #bob variables
 const BOB_FREQ = 2.0
@@ -29,14 +28,16 @@ var is_reloading = false
 var can_reload = false
 
 @onready var head = $Head
-@onready var camera = $Head/Camera3D
+@onready var camera = $Head/Recoil/Camera3D
 @onready var health_component: Node = $HealthComponent
 @onready var healthbar = $Healthbar
-@onready var gun_barrel = $Head/Camera3D/Revolver/RayCast3D
+@onready var gun_barrel = $Head/Recoil/Camera3D/Revolver/RayCast3D
 @onready var reload_cooldown = $ReloadCooldown
-@onready var ammo_label: Label = $Head/Camera3D/CanvasLayer/AmmoLabel
-@onready var reload_label: Label = $Head/Camera3D/CanvasLayer/ReloadLabel
-@onready var score_label: Label = $Head/Camera3D/CanvasLayer/ScoreLabel #ScoreLabel to show score
+@onready var ammo_label: Label = $Head/Recoil/Camera3D/CanvasLayer/AmmoLabel
+@onready var reload_label: Label = $Head/Recoil/Camera3D/CanvasLayer/ReloadLabel
+@onready var score_label: Label = $Head/Recoil/Camera3D/CanvasLayer/ScoreLabel #ScoreLabel to show score
+@onready var recoil = $Head/Recoil #recoil
+@onready var death_screen: Control = get_tree().current_scene.get_node("DeathCanvas/DeathScreen")
 
 func _update_ammo_ui():
 	ammo_label.text = str(ammo_in_mag)
@@ -51,7 +52,6 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	health_component.health_changed.connect(_on_health_changed)
 	healthbar.init_health(health_component.health)
-	reload_cooldown.timeout.connect(_on_reload_cooldown_timeout)
 	reload_label.visible = false
 	_update_ammo_ui()
 	
@@ -62,8 +62,8 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
+		head.rotate_y(-event.relative.x * Settings.mouse_sensitivity)
+		camera.rotate_x(-event.relative.y * Settings.mouse_sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 
@@ -88,16 +88,22 @@ func _handle_shoot() -> void:
 
 	ammo_in_mag -= 1
 	_update_ammo_ui()
+	recoil.add_recoil()
 
 	#aim in middle.
-	var screen_center: Vector2 = get_viewport().get_visible_rect().size / 2.0
+	var screen_center: Vector2 = get_viewport().get_visible_rect().size / 2.0 
 	var ray_origin: Vector3 = camera.project_ray_origin(screen_center)
 	var ray_direction: Vector3 = camera.project_ray_normal(screen_center)
 	var ray_end: Vector3 = ray_origin + ray_direction * 1000.0
 
 	var query := PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 
-	query.exclude = [self]
+
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+
+	query.exclude = [self.get_rid()]
+
 
 	var space_state := get_world_3d().direct_space_state
 	var result := space_state.intersect_ray(query)
@@ -108,12 +114,7 @@ func _handle_shoot() -> void:
 
 	var distance_from_barrel: float = gun_barrel.global_position.distance_to(target_position)
 	
-	if distance_from_barrel < 0.5:
-		var camera_forward: Vector3 = -camera.global_transform.basis.z
-		var camera_left: Vector3 = -camera.global_transform.basis.x
-
-		var shoot_direction: Vector3 = (camera_forward + camera_left * 0.45).normalized()
-		target_position = camera.global_position + shoot_direction * 1000.0
+	if distance_from_barrel < 1.5:target_position = (gun_barrel.global_position+ ray_direction * 1000.0)
 		
 	#bullet
 	var instance = bullet.instantiate()
@@ -203,7 +204,11 @@ func _headbob(time) -> Vector3:
 	
 
 func on_death(_attack: Attack = null) -> void:
-	get_tree().quit()
+	if is_dead:
+		return
+		
+	is_dead = true
+	death_screen.show_death_screen(ScoreManager.score)
 
 
 func _on_reload_cooldown_timeout() -> void:
