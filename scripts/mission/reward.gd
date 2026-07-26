@@ -15,11 +15,19 @@ func apply(player) -> void:
 		Type.FULL_HEAL:
 			player.health_component.health = player.health_component.MaxHealth
 			player.health_component.health_changed.emit(player.health_component.health)
+			
 		Type.MAX_HEALTH:
 			player.health_component.MaxHealth += amount
-			player.health_component.health = player.health_component.MaxHealth
+			player.health_component.health = \
+				player.health_component.MaxHealth
+
+			player.healthbar.update_max_health(player.health_component.MaxHealth)
+
 			player.health_component.health_changed.emit(player.health_component.health)
+			
 		Type.MAG_SIZE:
 			player.mag_size += int(amount)
+			player.ammo_in_mag = player.mag_size
+			player._update_ammo_ui()
 		Type.DAMAGE:
 			player.bullet_damage_bonus += amount

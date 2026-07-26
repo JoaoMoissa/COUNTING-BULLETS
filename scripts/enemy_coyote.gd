@@ -87,4 +87,10 @@ func on_death(attack: Attack = null) -> void:
 	if attack != null and attack.is_headshot:
 		points = int(points * HeadshotBonus)
 	ScoreManager.add_kill(points, attack != null and attack.is_headshot)
+	
+	var tutorial_controller = get_tree().get_first_node_in_group("TutorialController")
+
+	if tutorial_controller:
+		tutorial_controller.notify_enemy_killed()
+ 
 	queue_free()

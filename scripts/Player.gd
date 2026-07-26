@@ -120,16 +120,29 @@ func _update_reload_ui():
 
 #shoot
 func _handle_shoot() -> void:
-	if is_reloading:
+	if is_reloading or is_dead:
 		return
 
 	if not Input.is_action_just_pressed("shoot"):
 		return
 
 	if ammo_in_mag <= 0:
+		var tutorial_controller = get_tree().get_first_node_in_group("TutorialController")
+
+		if (tutorial_controller and tutorial_controller.tutorial_active):
+			return
+
+		on_death()
 		return
 
 	ammo_in_mag -= 1
+	
+	if ammo_in_mag == 0:
+		var tutorial_controller = get_tree().get_first_node_in_group("TutorialController")
+
+		if tutorial_controller:
+			tutorial_controller.notify_magazine_empty()
+	
 	_update_ammo_ui()
 	gun_sprite.play("shoot")
 	_show_random_muzzle_flash()
@@ -289,6 +302,14 @@ func _reload():
 	is_reloading = false
 	can_reload = false
 
+	var tutorial_controller = get_tree().get_first_node_in_group(
+	"TutorialController"
+)
+
+	if tutorial_controller:
+		tutorial_controller.notify_player_reloaded()
+		
+		
 func _physics_process(delta: float) -> void:
 	
 		

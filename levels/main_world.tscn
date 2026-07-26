@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://doik4e553f7qn" path="res://png/missions.png" id="18_51bap"]
 [ext_resource type="FontFile" uid="uid://d2lcbhg6sx6cf" path="res://png/font/Molot.otf" id="18_y4sao"]
 [ext_resource type="PackedScene" uid="uid://ch1jnntxyu5uw" path="res://scenes/UI/MissionBoard.tscn" id="20_51bap"]
+[ext_resource type="Script" uid="uid://cgrxa0iyyapa0" path="res://scripts/tutorial/tutorial_controller.gd" id="21_0dxp3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tsf8b"]
 sky_top_color = Color(0.5148345, 0.441307, 0.24894011, 1)
@@ -267,10 +268,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.778013, 0.28009248, 54.735
 [node name="Marker03" type="Marker3D" parent="SpawnPoints" unique_id=479535103]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.14073, 0.4694922, -39.08944)
 
-[node name="WaveManager" type="Node" parent="." unique_id=1444209382 node_paths=PackedStringArray("spawn_points", "enemies_container") groups=["WaveManager"]]
+[node name="WaveManager" type="Node" parent="." unique_id=1444209382 node_paths=PackedStringArray("enemies_container") groups=["WaveManager"]]
 script = ExtResource("11_cne4x")
 enemy_scenes = Array[PackedScene]([ExtResource("12_1rl7q"), ExtResource("13_jpjmb")])
-spawn_points = [NodePath("../SpawnPoints/Marker01"), NodePath("../SpawnPoints/Marker02"), NodePath("../SpawnPoints/Marker03")]
 enemies_container = NodePath("../Enemies")
 
 [node name="SpawnTimer" type="Timer" parent="WaveManager" unique_id=1628452516]
@@ -285,6 +285,7 @@ billboard = 2
 texture = ExtResource("18_51bap")
 
 [node name="Area3D" type="Area3D" parent="MissionBoard" unique_id=1402627624 groups=["Hitbox", "World"]]
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MissionBoard/Area3D" unique_id=33553139]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053264856, 1.2575997, 0)
@@ -298,3 +299,6 @@ font = ExtResource("18_y4sao")
 
 [node name="MissionUI" parent="." unique_id=455243979 instance=ExtResource("20_51bap")]
 visible = false
+
+[node name="TutorialController" type="Node" parent="." unique_id=705615879]
+script = ExtResource("21_0dxp3")

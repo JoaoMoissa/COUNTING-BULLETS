@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://i21sn1lp673i" path="res://png/Revolver/ARMA SEM TAMBOR.png" id="9_jej6c"]
 [ext_resource type="PackedScene" uid="uid://bkyfx7ejaicur" path="res://scenes/pause_menu.tscn" id="15_a8ls1"]
 [ext_resource type="PackedScene" uid="uid://b6lg3ivxc20ck" path="res://scenes/death_screen.tscn" id="16_qfm1y"]
+[ext_resource type="Script" uid="uid://5jheb1whejys" path="res://scripts/tutorial/cat_dialogue.gd" id="18_fulsm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 
@@ -360,6 +361,38 @@ process_mode = 3
 [node name="DeathCanvas" type="CanvasLayer" parent="." unique_id=1520557209]
 
 [node name="DeathScreen" parent="DeathCanvas" unique_id=2059064050 instance=ExtResource("16_qfm1y")]
+
+[node name="CatCanvas" type="CanvasLayer" parent="." unique_id=1563736969]
+
+[node name="CatDialogue" type="Control" parent="CatCanvas" unique_id=2147340099]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_fulsm")
+
+[node name="Background" type="ColorRect" parent="CatCanvas/CatDialogue" unique_id=1080630897]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CatSprite" type="TextureRect" parent="CatCanvas/CatDialogue" unique_id=1015896890]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DialogueLabel" type="Label" parent="CatCanvas/CatDialogue" unique_id=1874524669]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ContinueLabel" type="Label" parent="CatCanvas/CatDialogue" unique_id=728501034]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "PRESS ENTER"
 
 [connection signal="animation_finished" from="Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/Weapon" to="." method="_on_weapon_animation_finished"]
 [connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]

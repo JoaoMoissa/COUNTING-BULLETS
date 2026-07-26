@@ -56,8 +56,8 @@ func _random_reward() -> Reward:
 			r.text = "Full heal"
 		1:
 			r.type = Reward.Type.MAX_HEALTH
-			r.amount = 25
-			r.text = "+25 max health"
+			r.amount = 10
+			r.text = "+10 max health"
 		2:
 			r.type = Reward.Type.MAG_SIZE
 			r.amount = 2

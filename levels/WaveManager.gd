@@ -1,7 +1,8 @@
 extends Node
 
 @export var enemy_scenes: Array[PackedScene] = []   # enemies scenes
-@export var spawn_points: Array[Node3D] = []        # All Markers
+@onready var spawn_points: Array[Node] = \
+	get_parent().get_node("SpawnPoints").get_children()     # All Markers
 @export var enemies_container: Node3D               # Enemies Node
 
 # --- ajustes de dificuldade ---
