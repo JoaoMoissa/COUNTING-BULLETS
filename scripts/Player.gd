@@ -44,7 +44,6 @@ var can_reload = false
 @onready var score_label: Label = $Head/Recoil/Camera3D/CanvasLayer/ScoreLabel #ScoreLabel to show score
 @onready var recoil = $Head/Recoil #recoil
 @onready var death_screen: Control = $DeathCanvas/DeathScreen
-
 #weapon animation
 @onready var gun_sprite: AnimatedSprite2D = $Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/Weapon
 @onready var muzzle_flash: AnimatedSprite2D = $Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/MuzzleFlash

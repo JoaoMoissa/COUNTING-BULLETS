@@ -82,7 +82,7 @@ shape = SubResource("SphereShape3D_57qmd")
 visible = false
 mesh = SubResource("SphereMesh_g4v7s")
 
-[node name="tail" type="Area3D" parent="VisualRoot" unique_id=62302229 groups=["Hitbox"]]
+[node name="tali" type="Area3D" parent="VisualRoot" unique_id=62302229 groups=["Hitbox"]]
 transform = Transform3D(0.38957965, -0.09070666, 0, 0.09070666, 0.38957965, 0, 0, 0, 0.4, -0.48052788, 1.281189, 0)
 collision_layer = 2
 collision_mask = 0

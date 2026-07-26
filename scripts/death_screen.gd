@@ -7,7 +7,6 @@ func _ready() -> void:
 
 func show_death_screen(final_score: int) -> void:
 	final_score_label.text = "SCORE: %d" % final_score
-
 	show()
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

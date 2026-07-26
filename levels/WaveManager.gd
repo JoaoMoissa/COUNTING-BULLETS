@@ -46,7 +46,7 @@ func _spawn_one() -> void:
 		spawn_timer.stop()                                  # já nasceram todos
 
 func _on_enemy_died() -> void:
-	if not is_inside_tree():   # cena sendo destruída -> ignora
+	if not is_inside_tree(): 
 		return
 	alive -= 1
 	if to_spawn == 0 and alive == 0:
