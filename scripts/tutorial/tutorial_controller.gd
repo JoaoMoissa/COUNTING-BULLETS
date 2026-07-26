@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func _spawn_tutorial_enemy() -> void:
-	print("Spawnar primeiro inimigo do tutorial")
+	wave_manager.start_tutorial_enemy()
 
 
 func _start_tutorial() -> void:
@@ -48,7 +48,7 @@ func _start_tutorial() -> void:
 
 
 func _start_tutorial_combat() -> void:
-	print("Spawnar inimigos até o pente esvaziar")
+	wave_manager.start_tutorial_combat()
 
 
 func notify_enemy_killed() -> void:
@@ -84,7 +84,8 @@ func notify_magazine_empty() -> void:
 		"Careful!",
 		"If you pull the trigger without bullets...",
 		"I'm going to kill you.",
-		"Press R to reload."
+		"The curse needs a moment to release the cylinder.",
+		"Wait until the countdown ends.",
 	])
 
 	await cat_dialogue.dialogue_finished
@@ -101,7 +102,7 @@ func notify_player_reloaded() -> void:
 
 
 func _start_wave_two() -> void:
-	print("Começar onda 2")
+	wave_manager.start_wave_two()
 
 
 func finish_tutorial() -> void:

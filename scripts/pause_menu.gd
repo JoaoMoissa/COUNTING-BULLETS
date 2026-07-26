@@ -40,6 +40,11 @@ func testEsc():
 	
 	if player != null and player.is_dead:
 		return
+
+	var cat_dialogue = get_tree().get_first_node_in_group("CatDialogue")
+
+	if cat_dialogue != null and cat_dialogue.is_open:
+		return
 	
 	if quit_popup.visible:
 		quit_popup.hide()
@@ -48,6 +53,7 @@ func testEsc():
 	elif get_tree().paused:
 		resume()
 	else:
+		pause()
 		pause()
 
 
