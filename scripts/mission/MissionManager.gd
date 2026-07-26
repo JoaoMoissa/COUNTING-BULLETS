@@ -20,7 +20,7 @@ func _ready() -> void:
 func has_active_mission() -> bool:
 	return active_mission != null
 	
-func _refresh_missions() -> void:
+func refresh_missions() -> void:
 	offered_missions.clear()
 
 	for i in range(3):
@@ -28,7 +28,7 @@ func _refresh_missions() -> void:
 		
 func offer_missions() -> Array:
 	if offered_missions.is_empty():
-		_refresh_missions()
+		refresh_missions()
 
 	return offered_missions
 
@@ -110,7 +110,7 @@ func _complete() -> void:
 	_grant_reward()
 	mission_completed.emit(active_mission)
 	active_mission = null
-	_refresh_missions()
+	refresh_missions()
 
 func _grant_reward() -> void:
 	var player = get_tree().get_first_node_in_group("Player")

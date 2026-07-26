@@ -30,6 +30,7 @@ func _spawn_tutorial_enemy() -> void:
 
 
 func _start_tutorial() -> void:
+	MissionManager.refresh_missions()
 	state = TutorialState.STARTING
 	ammo_label.show()
 	reload_label.show()

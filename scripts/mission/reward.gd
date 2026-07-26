@@ -32,9 +32,15 @@ func apply(player) -> void:
 			player.health_component.health_changed.emit(player.health_component.health)
 			
 		Type.MAG_SIZE:
-			player.mag_size += int(amount)
-			player.ammo_in_mag = player.mag_size
+			var extra := int(amount)
+
+			player.mag_size += extra
+			player.ammo_in_mag = min(
+				player.ammo_in_mag + extra,
+				player.mag_size
+			)
 			player._update_ammo_ui()
+			
 		Type.DAMAGE:
 			player.bullet_damage_bonus += amount
 			
