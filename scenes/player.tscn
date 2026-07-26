@@ -3,18 +3,158 @@
 [ext_resource type="Script" uid="uid://g5vkkvy668f1" path="res://scripts/Player.gd" id="1_dqkch"]
 [ext_resource type="PackedScene" uid="uid://clyyf2s1ycx38" path="res://scenes/revolver.tscn" id="2_qlg0r"]
 [ext_resource type="Script" uid="uid://bo8w7pb04ax4s" path="res://scripts/recoil.gd" id="2_smehm"]
-[ext_resource type="Texture2D" uid="uid://dv8m1dascp3n3" path="res://png/ARMA FINALIZADA.png" id="3_fjrip"]
 [ext_resource type="PackedScene" uid="uid://bcle362tgkiik" path="res://components/health_component.tscn" id="3_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://msu1tfpfy18u" path="res://scenes/healthbar.tscn" id="4_fjrip"]
+[ext_resource type="Texture2D" uid="uid://b5r60l2ak0k" path="res://png/Revolver/FOGO 1.png" id="4_jej6c"]
+[ext_resource type="Texture2D" uid="uid://c81epdxo7dr8" path="res://png/Revolver/ARMA NORMAL.png" id="4_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://ctrjpc1ny4dyy" path="res://png/Revolver/FOGO 2.png" id="5_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://cqo5axju1myen" path="res://png/Revolver/ARMA ABAIXADA.png" id="5_y4r1p"]
 [ext_resource type="Script" uid="uid://dwmwjk6yywav0" path="res://scripts/reticle.gd" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://dn1428ijdajta" path="res://png/Revolver/FOGO 4.png" id="7_a8ls1"]
 [ext_resource type="Texture2D" uid="uid://crf4k6ufqf2k" path="res://png/mira.png" id="8_smehm"]
-[ext_resource type="PackedScene" uid="uid://bkyfx7ejaicur" path="res://scenes/pause_menu.tscn" id="9_y4r1p"]
-[ext_resource type="PackedScene" uid="uid://b6lg3ivxc20ck" path="res://scenes/death_screen.tscn" id="10_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://fb1t1m4n7yt5" path="res://png/Revolver/TAMBOR.png" id="9_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://i21sn1lp673i" path="res://png/Revolver/ARMA SEM TAMBOR.png" id="9_jej6c"]
+[ext_resource type="PackedScene" uid="uid://bkyfx7ejaicur" path="res://scenes/pause_menu.tscn" id="15_a8ls1"]
+[ext_resource type="PackedScene" uid="uid://b6lg3ivxc20ck" path="res://scenes/death_screen.tscn" id="16_qfm1y"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
-
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ywjxi"]
 points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4760704, 0.49888408, 0.16971254, 0.5591441, 0.46417162, 0.23105091, -0.8035912, 0.32045516, 0.40741014, 0.651043, -0.24352328, -0.4827893, 0.59484255, 0.082213186, -0.3628679, -0.68231165, 0.2896967, 0.46904355, -0.65452886, -0.06627126, -0.12744367, 0.8427015, -0.33810276, -0.39343542, -0.6839421, -0.24471663, 0.43825462, 0.62330925, 0.20084947, 0.0841477, 0.977454, 0.11479468, -0.06820232, -0.9764576, -0.12927033, 0.20054972, -0.56312895, -0.4514544, -0.18552664, 0.59545326, -0.4534751, -0.27336287, 0.59226835, 0.40775412, -0.0069364863, -0.47682306, 0.49966025, 0.37582088, -0.5886136, 0.31695515, 0.111579016, 0.5630594, -0.48117727, -0.41725034, 0.5278656, -0.27049688, -0.48454633, -0.59697217, -0.06650971, -0.27974695, 0.90856135, 0.05333608, -0.25019687, -0.8807117, 0.20531891, 0.263647, -0.90277094, -0.1273943, 0.29336792, 0.8715263, -0.15719566, 0.3734115, -0.5263189, -0.32824618, 0.4996626, 0.47664148, -0.0068885577, 0.053105574, 0.8750009, 0.32470253, -0.15454252, -0.5908538, 0.4658794, -0.09727988, -0.7823577, -0.39818847, -0.3876489, -0.49817133, 0.31564978, -0.30067965, -0.58799505, -0.38890144)
+
+[sub_resource type="Animation" id="Animation_3v2ag"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/WeaponPivot:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/WeaponPivot:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/WeaponPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_jej6c"]
+resource_name = "weapon_recoil"
+length = 0.15
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/WeaponPivot:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0, 10, -0.006666667, -1.6666667, 0, 0, 0, -0.018333334, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.04, 0.15)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/WeaponPivot:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0, 15, -0.006666667, -2.5, 0, 0, 0, -0.018333334, 2.5, 0, 0),
+"times": PackedFloat32Array(0, 0.04, 0.15)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/WeaponPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0, 0.013962634, -0.006666667, 0, 0.018333334, 0, 0, -0.025000002, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.04, 0.15)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ej7"]
+_data = {
+&"RESET": SubResource("Animation_3v2ag"),
+&"weapon_recoil": SubResource("Animation_jej6c")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
+atlas = ExtResource("4_jej6c")
+region = Rect2(0, 0, 74, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fulsm"]
+atlas = ExtResource("5_f1ej7")
+region = Rect2(0, 0, 74, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60mlk"]
+atlas = ExtResource("7_a8ls1")
+region = Rect2(0, 0, 105, 77)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfm1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fulsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60mlk")
+}],
+"loop": 1,
+"name": &"flash",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
+atlas = ExtResource("4_ur7pv")
+region = Rect2(0, 0, 301, 497)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("5_y4r1p")
+region = Rect2(0, 0, 301, 497)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4r1p")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2ag")
+}],
+"loop": 0,
+"name": &"shoot",
+"speed": 5.0
+}]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 
@@ -55,12 +195,6 @@ transform = Transform3D(0.9876283, -0.04877264, 0.14903563, 0.064133994, 0.99291
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Head/Recoil/Camera3D" unique_id=1001775197]
 
-[node name="Weapon" type="Sprite2D" parent="Head/Recoil/Camera3D/CanvasLayer" unique_id=1948241857]
-position = Vector2(914, 490)
-rotation = -0.034906585
-scale = Vector2(0.48458195, 0.484582)
-texture = ExtResource("3_fjrip")
-
 [node name="AmmoLabel" type="Label" parent="Head/Recoil/Camera3D/CanvasLayer" unique_id=1540089345]
 offset_left = 973.0
 offset_top = 332.0
@@ -86,6 +220,38 @@ text = "9999
 "
 horizontal_alignment = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Recoil/Camera3D/CanvasLayer" unique_id=614998839]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_f1ej7")
+
+[node name="WeaponPivot" type="Node2D" parent="Head/Recoil/Camera3D/CanvasLayer" unique_id=1340492495]
+
+[node name="MuzzleFlash" type="AnimatedSprite2D" parent="Head/Recoil/Camera3D/CanvasLayer/WeaponPivot" unique_id=26418355]
+position = Vector2(818.00006, 349)
+scale = Vector2(0.5810811, 0.5810811)
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+animation = &"flash"
+
+[node name="Weapon" type="AnimatedSprite2D" parent="Head/Recoil/Camera3D/CanvasLayer/WeaponPivot" unique_id=163032649]
+position = Vector2(914, 490)
+rotation = -0.034906585
+scale = Vector2(0.5880487, 0.58804876)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="ReloadVisual" type="Node2D" parent="Head/Recoil/Camera3D/CanvasLayer/WeaponPivot" unique_id=1001529052]
+
+[node name="Cylinder" type="Sprite2D" parent="Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/ReloadVisual" unique_id=1292381507]
+position = Vector2(900, 388.99997)
+scale = Vector2(0.7025316, 0.70253164)
+texture = ExtResource("9_f1ej7")
+
+[node name="ReloadGun" type="Sprite2D" parent="Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/ReloadVisual" unique_id=1732261689]
+position = Vector2(918.5, 475.55685)
+scale = Vector2(0.68939394, 0.68939394)
+texture = ExtResource("9_jej6c")
+
 [node name="HealthComponent" parent="." unique_id=1607970574 instance=ExtResource("3_tuyoq")]
 
 [node name="Healthbar" parent="." unique_id=771241607 instance=ExtResource("4_fjrip")]
@@ -103,8 +269,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -2.0
-offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -154,6 +318,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_yf5fn")
 surface_material_override/0 = SubResource("StandardMaterial3D_57qmd")
 
+<<<<<<< HEAD
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2110496977]
 process_mode = 3
 
@@ -163,4 +328,16 @@ process_mode = 3
 
 [node name="DeathScreen" parent="DeathCanvas" unique_id=2059064050 instance=ExtResource("10_d2wvv")]
 
+=======
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=935672056]
+process_mode = 3
+
+[node name="PauseMenu" parent="PauseCanvas" unique_id=488864533 instance=ExtResource("15_a8ls1")]
+
+[node name="DeathCanvas" type="CanvasLayer" parent="." unique_id=1520557209]
+
+[node name="DeathScreen" parent="DeathCanvas" unique_id=2059064050 instance=ExtResource("16_qfm1y")]
+
+[connection signal="animation_finished" from="Head/Recoil/Camera3D/CanvasLayer/WeaponPivot/Weapon" to="." method="_on_weapon_animation_finished"]
+>>>>>>> 7933cc8466e3f466a06f7be4eb52f2401bd38f63
 [connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]
