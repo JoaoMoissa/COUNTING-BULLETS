@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv8m1dascp3n3"
-path="res://.godot/imported/ARMA FINALIZADA.png-4b8357a3d4b937b92b89489d6b15b9d2.ctex"
+uid="uid://fb1t1m4n7yt5"
+path="res://.godot/imported/TAMBOR.png-968b00fb88249d0931ffa1d335739379.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://png/ARMA FINALIZADA.png"
-dest_files=["res://.godot/imported/ARMA FINALIZADA.png-4b8357a3d4b937b92b89489d6b15b9d2.ctex"]
+source_file="res://png/Revolver/TAMBOR.png"
+dest_files=["res://.godot/imported/TAMBOR.png-968b00fb88249d0931ffa1d335739379.ctex"]
 
 [params]
 
