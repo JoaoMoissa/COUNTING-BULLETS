@@ -1,0 +1,285 @@
+[gd_scene format=3 uid="uid://bkyfx7ejaicur"]
+
+[ext_resource type="Script" uid="uid://dp3t2q1iyp1m2" path="res://scripts/pause_menu.gd" id="1_myx47"]
+[ext_resource type="Shader" uid="uid://b082plalfte6w" path="res://scenes/pause_menu.gdshader" id="2_kukqi"]
+[ext_resource type="Texture2D" uid="uid://1gdmgok2vbaq" path="res://png/Menu/ResumeMenuRed.png" id="3_88e76"]
+[ext_resource type="Texture2D" uid="uid://cmxiv3e1m1b42" path="res://png/Menu/ResumeMenuWhite.png" id="4_knqa7"]
+[ext_resource type="Texture2D" uid="uid://rcwfdn8oaea1" path="res://png/Menu/OptionsMenuRed.png" id="5_71k7c"]
+[ext_resource type="Texture2D" uid="uid://cqd3ny0lcot7s" path="res://png/Menu/OptionsMenuWhite.png" id="6_cmnsq"]
+[ext_resource type="Texture2D" uid="uid://c1y60qexiodj2" path="res://png/Menu/QuitMenuRed.png" id="7_ofnjo"]
+[ext_resource type="Texture2D" uid="uid://l5ylf40jxifk" path="res://png/Menu/QuitMenuWhite.png" id="8_1rgno"]
+[ext_resource type="Texture2D" uid="uid://ctbjy4dvxsble" path="res://png/Menu/WantQuitRed.png" id="9_1rgno"]
+[ext_resource type="Texture2D" uid="uid://d2arkfnyrg20f" path="res://png/Menu/YesRed.png" id="10_4hnlu"]
+[ext_resource type="Texture2D" uid="uid://dibqhighj4usl" path="res://png/Menu/YesWhite.png" id="11_3o3g3"]
+[ext_resource type="Texture2D" uid="uid://bslj61qkykvt0" path="res://png/Menu/NoRed.png" id="12_h5b1d"]
+[ext_resource type="Texture2D" uid="uid://cfmeui02op6k2" path="res://png/Menu/NoWhite.png" id="13_avs0h"]
+[ext_resource type="PackedScene" uid="uid://csvu37vq0y5fl" path="res://scenes/options_menu.tscn" id="14_4hnlu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+shader = ExtResource("2_kukqi")
+shader_parameter/lod = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+bg_color = Color(0.004019165, 0.004019165, 0.001711311, 1)
+
+[sub_resource type="Animation" id="Animation_5d2l8"]
+length = 13.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/PanelContainer:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/PanelContainer:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/PanelContainer:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/PanelContainer:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_7l7mv"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 0.8, -0.050000004, -0.13333334, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/PanelContainer:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/PanelContainer:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/PanelContainer:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/PanelContainer:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.050000004, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v4r4p"]
+_data = {
+&"RESET": SubResource("Animation_5d2l8"),
+&"blur": SubResource("Animation_7l7mv")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
+bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
+
+[node name="PauseMenu" type="Control" unique_id=488864533]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_myx47")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1519757097]
+material = SubResource("ShaderMaterial_yf5fn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19215687, 0.19215687, 0.19215687, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=837511156]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1296143420]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1597275139]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=552418829]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/CenterContainer" unique_id=1321646794]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Resume" type="TextureButton" parent="CenterContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer" unique_id=139549222]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("3_88e76")
+texture_hover = ExtResource("4_knqa7")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Options" type="TextureButton" parent="CenterContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer" unique_id=1870842575]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+texture_normal = ExtResource("5_71k7c")
+texture_hover = ExtResource("6_cmnsq")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Quit" type="TextureButton" parent="CenterContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer" unique_id=1796792583]
+custom_minimum_size = Vector2(220, 50)
+layout_mode = 2
+texture_normal = ExtResource("7_ofnjo")
+texture_hover = ExtResource("8_1rgno")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1174724956]
+libraries/ = SubResource("AnimationLibrary_v4r4p")
+
+[node name="QuitPopUp" type="CenterContainer" parent="." unique_id=758024448]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="QuitPopUp" unique_id=788997368]
+custom_minimum_size = Vector2(650, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
+
+[node name="MarginContainer" type="MarginContainer" parent="QuitPopUp/PanelContainer" unique_id=905997439]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuitPopUp/PanelContainer/MarginContainer" unique_id=1728433004]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="WantQuit" type="TextureRect" parent="QuitPopUp/PanelContainer/MarginContainer/VBoxContainer" unique_id=1196370976]
+custom_minimum_size = Vector2(500.19, 133.845)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("9_1rgno")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="QuitPopUp/PanelContainer/MarginContainer/VBoxContainer" unique_id=1930798583]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Yes" type="TextureButton" parent="QuitPopUp/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2060904578]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+texture_normal = ExtResource("10_4hnlu")
+texture_hover = ExtResource("11_3o3g3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="No" type="TextureButton" parent="QuitPopUp/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=234838056]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+texture_normal = ExtResource("12_h5b1d")
+texture_hover = ExtResource("13_avs0h")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="OptionsMenu" parent="." unique_id=1166744163 instance=ExtResource("14_4hnlu")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="QuitPopUp/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="QuitPopUp/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/No" to="." method="_on_no_pressed"]

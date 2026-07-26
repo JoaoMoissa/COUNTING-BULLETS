@@ -1,19 +1,50 @@
 [gd_scene format=3 uid="uid://b7w1ce10rrs24"]
 
 [ext_resource type="Script" uid="uid://vnm4b05bi4b2" path="res://scripts/bullet.gd" id="1_mkf8s"]
+[ext_resource type="Texture2D" uid="uid://l8hmpsnco2bq" path="res://png/BALA.png" id="2_y25gk"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
-size = Vector3(0.05, 0.05, 0.5)
+[sub_resource type="SphereMesh" id="SphereMesh_yf5fn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
 albedo_color = Color(1, 1, 0.44313726, 0.18431373)
 
-[node name="Bullet" type="Node3D" unique_id=2009687699]
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y25gk"]
+atlas = ExtResource("2_y25gk")
+region = Rect2(0, 0, 83, 81)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y25gk")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="Area3D" unique_id=1669586633]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_mkf8s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=494437680]
-mesh = SubResource("BoxMesh_g4v7s")
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_yf5fn")
 surface_material_override/0 = SubResource("StandardMaterial3D_57qmd")
 
-[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1393821387]
-target_position = Vector3(0, 0, -0.6)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=139923662]
+transform = Transform3D(0.09, 0, 0, 0, 0.09, 0, 0, 0, 0.09, 0, 0, 0)
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1479423672]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+animation = &"idle"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
